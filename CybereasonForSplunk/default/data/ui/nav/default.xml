@@ -1,0 +1,24 @@
+<nav search_view="search" color="#222E33">
+  <view name="discovery"  label="Discovery" default="true"/>
+    <view name="inbox" label="Malop Inbox"/>
+    <view name="malops_breakdown" label="Malops Statistics"/>
+    <view name="malware_overview" label="Malware" />
+    <view name="action_logs" label="Action Logs" />
+    <view name="suspicious_breakdown" label="Suspicious Insights"/>
+  <view name="About" label="About" />
+<collection label="Administration">
+		<view name="App_Config"/>
+		<view name="app_health_overview"/>
+        <view name="application_usage"/>
+        <view name="knowledge_base"/>
+        <collection label="Help">
+        </collection>
+    </collection>
+  <collection label="Splunk">
+	<view name="search"  label="Search"/>
+  	<view name="pivot" />
+ 	<view name="reports" />
+  	<view name="alerts" />
+  	<view name="dashboards" />
+  </collection>
+</nav>

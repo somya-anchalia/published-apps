@@ -1,0 +1,12 @@
+Questions and answers
+---------------------
+
+Access questions and answers specific to |long_name| at https://answers.splunk.com . Be sure to tag your question with the App.
+
+Support
+-------
+
+- Support Email: support@cybereason.com
+- Support Offered: Email, Community Engagement
+
+Support is available via email at support@cybereason.com.

@@ -1,0 +1,10 @@
+<dashboard version="1.1" script="markdown.js, dashboard.js">
+    <label>About</label>
+    <row>
+        <panel>
+            <html>
+                <div id="documentation_container"></div>
+            </html>
+        </panel>
+    </row>
+</dashboard>

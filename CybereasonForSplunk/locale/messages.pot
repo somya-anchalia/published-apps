@@ -1,0 +1,642 @@
+# Translations template for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-02-22 13:39-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.4\n"
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/doctools.js:167
+msgid "Permalink to this headline"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/doctools.js:173
+msgid "Permalink to this definition"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/doctools.js:206
+msgid "Hide Search Matches"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:400
+msgid "Searching"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:405
+msgid "Preparing search..."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:566
+msgid "Search Results"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:568
+msgid ""
+"Your search did not match any documents. Please make sure that all words "
+"are spelled correctly and that you've selected enough categories."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:570
+#, python-format
+msgid "Search finished, found %s page(s) matching the search query."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/appserver/static/documentation/_static/searchtools.js:623
+msgid ", in "
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/app.conf:3
+msgid "Cybereason For Splunk"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/app.conf:12
+msgid "The long description. Make it count. and Descriptive."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/checklist.conf:2
+msgid "Cybereason API Errors"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/checklist.conf:3
+msgid "API"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/checklist.conf:5
+msgid "This checks whether there are errors reaching the Cybereason API."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/checklist.conf:6
+msgid "API calls to Cybereason API are failing."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/checklist.conf:7
+msgid "Check the Cybereason error message for possible cause of failure."
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/nav/default.xml:0
+msgid "Administration"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/nav/default.xml:0
+msgid "Help"
+msgstr ""
+
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/nav/default.xml:0
+msgid "Splunk"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/About.xml:2
+msgid "About"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/About.xml:5
+msgid "<div id=\"documentation_container\"/>"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/App_Config.xml:26
+msgid "Application Configuration"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/App_Config.xml:29
+msgid ""
+"<div class=\"documentation_box\"><dl><dt>Application "
+"Configuration</dt><dd>This tab contains the \"Save\" button to show that "
+"the App was configured. It may also contain\n"
+"                            information and configurations relating to "
+"the data.\n"
+"                        </dd></dl></div>"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/App_Config.xml:43
+msgid "<div id=\"button_container\" class=\"button_container\"/>"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/App_Config.xml:50
+msgid ""
+"<ul id=\"tabs\" class=\"nav nav-tabs\"/><div class=\"message_box\" "
+"id=\"msg_box\" name=\"msg_box\"/><div class=\"slide_pills\"/><div "
+"id=\"tab_content_container\" class=\"tab_content_container\"/>"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/Overview.xml:2
+msgid "Overview"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:20
+msgid "Last checkpoint"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:32
+msgid "Last 10 event retrieval results"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:62
+msgid "API Error Count"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:2
+msgid "Application Health Overview"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:10
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/application_usage.xml:17
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:13
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:10
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:5
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:10
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:10
+msgid "Time Restriction"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:34
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:20
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:17
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:12
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:17
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:17
+msgid "Host Input"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/app_health_overview.xml:36
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:29
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:29
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:85
+msgid "All"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/application_usage.xml:26
+msgid "Quick Facts"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/application_usage.xml:41
+msgid "Top 5 Users"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/application_usage.xml:53
+msgid "Dashboard Usage over time"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/application_usage.xml:2
+msgid "Application Usage"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:51
+msgid "Daily Malop Activity"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:76
+msgid "Malop by Status"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:85
+msgid "Malop by Type"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:95
+msgid "Malops by Time"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:183
+msgid "Infections"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:198
+msgid "Privilege Escalations"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:211
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:35
+msgid "Scanning"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:225
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:34
+msgid "Lateral Movement"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:237
+msgid "Command and Control"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:250
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:36
+msgid "Data Theft"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:261
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:32
+msgid "Ransomware"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:2
+msgid "Discovery"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:143
+msgid "Active Malops"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:154
+msgid "Last Activity"
+msgstr ""
+
+#. option
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:165
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:91
+msgid "Affected Machines"
+msgstr ""
+
+#. option
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:176
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:151
+msgid "Affected Users"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:104
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:53
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:112
+msgid "Time"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:106
+msgid "Number of Malops"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/discovery.xml:32
+msgid ""
+"<ul id=\"tabs\" class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#\""
+" class=\"toggle-tab\" data-toggle=\"tab\" data-"
+"elements=\"row_malop_1,row_malop_2,row_malop_3,row_malop_4,row_malop_5,row_malop_6,row_malop_7\">Malop"
+"\n"
+"                            Overview\n"
+"                        </a></li><li><a href=\"#\" class=\"toggle-tab\" "
+"data-toggle=\"tab\" data-elements=\"row_malop_8\">Malop Detail\n"
+"                        </a></li></ul>"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:2
+msgid "Inbox"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:27
+msgid "Malop Category"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:30
+msgid "Malicious Infection"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:31
+msgid "CNC Communication"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:33
+msgid "Privilege Escalation"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/inbox.xml:41
+msgid ""
+"<div id=\"table_row_expansion_0_settings\" style=\"display:none;\" data-"
+"detail_search=\"eventtype=cybereason_malops_* "
+"malop_guid=&quot;%key%&quot; | stats values(name) AS &quot;Element "
+"Name&quot; by elementType\" data-url_detail=\"Investigate\" data-hide-"
+"fields=\"host\" data-detail_field=\"malop_guid\">\n"
+"                </div>"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:91
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:27
+msgid "Event Types"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:117
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:28
+msgid "Macros"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:143
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:29
+msgid "Transforms"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:172
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:30
+msgid "Props"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:198
+msgid "Eventgen"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:224
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:32
+msgid "Checklist"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:250
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:33
+msgid "Collections"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:276
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:34
+msgid "Saved Searches"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:302
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:35
+msgid "Tags"
+msgstr ""
+
+#. title
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:328
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:36
+msgid "Web"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:5
+msgid "Knowledge Base"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:26
+msgid "Configurations to Show"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:31
+msgid "Event Generation"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/knowledge_base.xml:44
+msgid ""
+"<div id=\"table_row_expansion_0_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-eventtypes | search title=%key% | transpose "
+"100 | rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/><div "
+"id=\"table_row_expansion_1_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-macros | search title=%key% | transpose 100 "
+"| rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/><div "
+"id=\"table_row_expansion_2_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-transforms | search title=%key% | transpose "
+"100 | rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)\""
+" data-detail_field=\"title\"/><div id=\"table_row_expansion_3_settings\" "
+"data-detail_search=\"| rest /servicesNS/-/-/configs/conf-props | search "
+"title=%key% | transpose 100 | rename column as Attribute &quot;row "
+"1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/><div "
+"id=\"table_row_expansion_4_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-eventgen | search title=%key% | transpose "
+"100 | rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/><div "
+"id=\"table_row_expansion_5_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-checklist | search title=%key% | transpose "
+"100 | rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)\""
+" data-detail_field=\"title\"/><div id=\"table_row_expansion_6_settings\" "
+"data-detail_search=\"| rest /servicesNS/-/-/configs/conf-collections | "
+"search title=%key% | transpose 100 | rename column as Attribute &quot;row"
+" 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)\""
+" data-detail_field=\"title\"/><div id=\"table_row_expansion_7_settings\" "
+"data-detail_search=\"| rest /servicesNS/-/-/configs/conf-savedsearches | "
+"search title=%key% | transpose 100 | rename column as Attribute &quot;row"
+" 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/><div "
+"id=\"table_row_expansion_8_settings\" data-detail_search=\"| rest "
+"/servicesNS/-/-/configs/conf-tags | search title=%key% | transpose 100 | "
+"rename column as Attribute &quot;row 1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)\""
+" data-detail_field=\"title\"/><div id=\"table_row_expansion_9_settings\" "
+"data-detail_search=\"| rest /servicesNS/-/-/configs/conf-web | search "
+"title=%key% | transpose 100 | rename column as Attribute &quot;row "
+"1&quot; as Value | eval "
+"Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+" \" data-detail_field=\"title\"/>"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:45
+msgid "Affected Machines Over Time"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:104
+msgid "Affected Users Over Time"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:164
+msgid "Suspicious File Breakdown"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:175
+msgid "Files to Remediate"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:2
+msgid "Malops Breakdown"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:55
+msgid "Number of Affected Machines"
+msgstr ""
+
+#. option
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:114
+msgid "Number of Affected Users"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:24
+msgid ""
+"<ul id=\"tabs\" class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#\""
+" class=\"toggle-tab\" data-toggle=\"tab\" data-"
+"elements=\"row_malop_1,row_malop_2\">Machines\n"
+"                        </a></li><li><a href=\"#\" class=\"toggle-tab\" "
+"data-toggle=\"tab\" data-elements=\"row_malop_3,row_malop_4\">Users\n"
+"                        </a></li><li><a href=\"#\" class=\"toggle-tab\" "
+"data-toggle=\"tab\" data-elements=\"row_malop_5\">Files\n"
+"                        </a></li></ul>"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:84
+msgid ""
+"<div id=\"table_row_expansion_0_settings\" style=\"display:none;\" data-"
+"detail_search=\"`cybereason_malops_base_name` | search "
+"name=&quot;%key%&quot; | sort - _time\" data-detail_field=\"name\">\n"
+"                </div>"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malops_breakdown.xml:143
+msgid ""
+"<div id=\"table_row_expansion_1_settings\" style=\"display:none;\" data-"
+"detail_search=\"`cybereason_malops_base_user` | search "
+"name=&quot;%key%&quot; | sort - _time\" data-hide-fields=\"tmp_name\" "
+"data-detail_field=\"tmp_name\">\n"
+"                </div>"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:48
+msgid "Details"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:2
+msgid "Malware Inbox"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:27
+msgid "Malware Classification Type"
+msgstr ""
+
+#. input/choice
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:30
+msgid "Malware"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/malware_overview.xml:35
+msgid ""
+"<ul id=\"tabs\" class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#\""
+" class=\"toggle-tab\" data-toggle=\"tab\" data-"
+"elements=\"row_malware_1\">Malware\n"
+"                            Overview\n"
+"                        </a></li></ul>"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:52
+msgid "Top 10 Suspicious Parent Processes or Executables"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:61
+msgid "Top 10 Suspicious Sub-Processes or Executables"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:72
+msgid "Detail"
+msgstr ""
+
+#. title
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:96
+msgid "Suspicious Command Line Process Detail"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:2
+msgid "Suspicions Inbox"
+msgstr ""
+
+#. label
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:83
+msgid "Product Type"
+msgstr ""
+
+#. html
+#: /opt/splunk/etc/apps/CybereasonForSplunk/default/data/ui/views/suspicious_breakdown.xml:29
+msgid ""
+"<ul id=\"tabs\" class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#\""
+" class=\"toggle-tab\" data-toggle=\"tab\" data-"
+"elements=\"row_suspicious_1\">Overview\n"
+"                        </a></li><li><a href=\"#\" class=\"toggle-tab\" "
+"data-toggle=\"tab\" data-elements=\"row_suspicious_2\">System\n"
+"                        </a></li><li><a href=\"#\" class=\"toggle-tab\" "
+"data-toggle=\"tab\" data-elements=\"row_suspicious_3\">Command\n"
+"                        </a></li></ul>"
+msgstr ""
+

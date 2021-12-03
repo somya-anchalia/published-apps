@@ -1,0 +1,6 @@
+Version 1.0.4
+-------------
+
+- Bug
+
+    - [CYB-66] - Login Routine causes cmp recursion

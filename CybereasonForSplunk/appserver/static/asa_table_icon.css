@@ -1,0 +1,52 @@
+/* Custom Icons */
+
+td.icon {
+    text-align: center;
+}
+
+td.icon i {
+    font-size: 25px;
+    text-shadow: 1px 1px #aaa;
+}
+
+td.icon .cnc {
+    background-image: url('images/cnc.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .data-theft {
+    background-image: url('images/data-theft.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .infection {
+    background-image: url('images/infection.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .lateral {
+    background-image: url('images/lateral.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .persistence {
+    background-image: url('images/persistence.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .ransomware {
+    background-image: url('images/ransomware.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .scanning {
+    background-image: url('images/scanning.png') !important;
+    background-size:20px 20px;
+}
+
+td.icon .stolen-credentials {
+    background-image: url('images/stolen-credentials') !important;
+    background-size:20px 20px;
+}
+
+

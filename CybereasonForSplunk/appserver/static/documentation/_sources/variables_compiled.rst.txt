@@ -1,0 +1,8 @@
+.. |long_name| replace:: Cybereason For Splunk
+.. |version| replace:: 1.0.5
+.. |build| replace:: 183
+.. |splunk_versions| replace:: 8.0, 7.3
+.. |splunkbase_url| replace:: https://splunkbase.splunk.com
+.. |ta_name| replace:: TA-CybereasonForSplunk
+.. |ia_name| replace:: IA-CybereasonForSplunk
+.. |long_description| replace:: Cybereason for Splunk allows Cybereason admins and users to view and correlate their existing data within Splunk.

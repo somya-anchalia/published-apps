@@ -1,0 +1,24 @@
+[]
+access = read : [ * ], write : [ admin, power ]
+export = system
+
+[checklist]
+export = system
+
+[eventgen]
+export = system
+
+[samples]
+export = system
+
+[eventtypes/cybereason_idx]
+export = system
+
+[eventtypes/cybereason_error]
+export = system
+
+[datamodels]
+export = system
+
+[views/App_Config]
+access = read : [ admin ], write : [ admin, power ]

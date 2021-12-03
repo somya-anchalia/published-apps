@@ -1,0 +1,352 @@
+<form version="1.1">
+    <init>
+        <set token="substrlen">200</set>
+    </init>
+    <label>Knowledge Base</label>
+    <search id="base_search">
+        <query>| makeresults
+            | eval files=split("$show_configs$",",")
+            | mvexpand files
+            | map search=" rest /servicesNS/-/-/configs/conf-$$files$$ splunk_server=local| eval type=\"$$files$$\" "
+            maxsearches=20
+            | rename eai:appName as app
+            | search
+            [ rest /services/search/jobs splunk_server=local
+            | addinfo
+            | where sid = info_sid
+            | rename eai:acl.app as app
+            | return app ]
+        </query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+        <sampleRatio>1</sampleRatio>
+    </search>
+    <fieldset submitButton="false">
+        <input type="multiselect" token="show_configs">
+            <label>Configurations to Show</label>
+            <choice value="eventtypes">Event Types</choice>
+            <choice value="macros">Macros</choice>
+            <choice value="transforms">Transforms</choice>
+            <choice value="props">Props</choice>
+            <choice value="eventgen">Event Generation</choice>
+            <choice value="checklist">Checklist</choice>
+            <choice value="collections">Collections</choice>
+            <choice value="savedsearches">Saved Searches</choice>
+            <choice value="tags">Tags</choice>
+            <choice value="web">Web</choice>
+            <default>eventtypes,macros</default>
+            <initialValue>eventtypes,macros</initialValue>
+            <delimiter>,</delimiter>
+        </input>
+    </fieldset>
+    <row depends="$never_show$">
+        <panel>
+            <html>
+                <div id="table_row_expansion_0_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-eventtypes | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_1_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-macros | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_2_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-transforms | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_3_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-props | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_4_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-eventgen | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_5_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-checklist | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_6_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-collections | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_7_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-savedsearches | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_8_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-tags | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value)"
+                     data-detail_field="title"/>
+                <div id="table_row_expansion_9_settings"
+                     data-detail_search="| rest /servicesNS/-/-/configs/conf-web | search title=%key% | transpose 100 | rename column as Attribute &quot;row 1&quot; as Value | eval Value=if(len(Value)&gt;$substrlen$,substr(Value,0,$substrlen$).&quot;...&quot;,Value) "
+                     data-detail_field="title"/>
+            </html>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <table>
+                <search id="server_info">
+                    <query>|rest /services/server/info | fields build cpu_arch os_name os_name_extended os_version
+                        physicalMemoryMB version | transpose 20 | rename column AS "Server Attribute" "row 1" as Value
+                    </query>
+                </search>
+            </table>
+        </panel>
+    </row>
+    <row>
+        <panel depends="$show_eventtypes$">
+            <title>Event Types</title>
+            <table id="table_row_expansion_0">
+                <search base="base_search">
+                    <query>search type="eventtypes" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_eventtypes">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_eventtypes"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_macros$">
+        <panel>
+            <title>Macros</title>
+            <table id="table_row_expansion_1">
+                <search base="base_search">
+                    <query>search type="macros" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_macros">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_macros"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_transforms$">
+        <panel>
+            <title>Transforms</title>
+            <table id="table_row_expansion_2">
+                <search base="base_search">
+                    <query>search type="transforms" | eval sub_type = case(isnotnull(filename),"file
+                        lookup",isnotnull(external_type),external_type. " lookup",1==1,"generic transform")|fields title
+                        sub_type eai:acl.sharing
+                    </query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_transforms">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_transforms"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_props$">
+        <panel>
+            <title>Props</title>
+            <table id="table_row_expansion_3">
+                <search base="base_search">
+                    <query>search type="props" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_props">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_props"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_eventgen$">
+        <panel>
+            <title>Eventgen</title>
+            <table id="table_row_expansion_4">
+                <search base="base_search">
+                    <query>search type="eventgen" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_eventgen">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_eventgen"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_checklist$">
+        <panel>
+            <title>Checklist</title>
+            <table id="table_row_expansion_5">
+                <search base="base_search">
+                    <query>search type="checklist" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_checklist">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_checklist"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_collections$">
+        <panel>
+            <title>Collections</title>
+            <table id="table_row_expansion_6">
+                <search base="base_search">
+                    <query>search type="collections" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_collections">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_collections"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_searches$">
+        <panel>
+            <title>Saved Searches</title>
+            <table id="table_row_expansion_7">
+                <search base="base_search">
+                    <query>search type="savedsearches" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_searches">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_searches"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_tags$">
+        <panel>
+            <title>Tags</title>
+            <table id="table_row_expansion_8">
+                <search base="base_search">
+                    <query>search type="tags" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_tags">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_tags"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$show_web$">
+        <panel>
+            <title>Web</title>
+            <table id="table_row_expansion_9">
+                <search base="base_search">
+                    <query>search type="web" | fields title eai:acl.sharing</query>
+                    <done>
+                        <condition match="$job.resultCount$ &gt; 0">
+                            <set token="show_web">visible</set>
+                        </condition>
+                        <condition>
+                            <unset token="show_web"></unset>
+                        </condition>
+                    </done>
+                </search>
+                <option name="count">10</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="percentagesRow">false</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="rowNumbers">false</option>
+                <option name="totalsRow">false</option>
+                <option name="wrap">true</option>
+            </table>
+        </panel>
+    </row>
+</form>

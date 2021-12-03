@@ -1,0 +1,66 @@
+<form version="1.1">
+    <label>Application Usage</label>
+    <search id="base_search">
+        <query>index=_internal sourcetype=splunk_web_access NOT (file=*.js OR file=*.css) NOT status=303 NOT user=-
+            uri_path="/en-US/app/**" | rex field=uri_path "/en-US/app/(?&lt;app&gt;[^/]+)/(?&lt;app_view&gt;[a-zA-Z0-9_]+)?"
+            | fillnull value="/" app_view| search [rest /services/search/jobs splunk_server=local | addinfo | where sid
+            = info_sid | rename eai:acl.app as app | return app]|table *
+        </query>
+        <done>
+            <set token="app_name">$result.app$</set>
+        </done>
+        <earliest>$time_restriction.earliest$</earliest>
+        <latest>$time_restriction.latest$</latest>
+    </search>
+    <fieldset submitButton="false">
+        <input type="time" token="time_restriction">
+            <label>Time Restriction</label>
+            <default>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <title>Quick Facts</title>
+            <single>
+                <search base="base_search">
+                    <query>stats dc(user) as "Distinct Users" dc(app_view) as "Distinct Dashboards" count as "Total
+                        Visits"
+                    </query>
+                </search>
+                <option name="drilldown">all</option>
+                <option name="height">207</option>
+                <option name="refresh.display">progressbar</option>
+                <option name="trellis.enabled">1</option>
+                <option name="trellis.size">medium</option>
+            </single>
+        </panel>
+        <panel>
+            <title>Top 5 Users</title>
+            <chart>
+                <search base="base_search">
+                    <query>stats count by user | sort - count | head 5</query>
+                </search>
+                <option name="charting.chart">column</option>
+                <option name="charting.drilldown">all</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <title>Dashboard Usage over time</title>
+            <chart>
+                <search base="base_search">
+                    <query>timechart count by app_view</query>
+                </search>
+                <option name="charting.chart">line</option>
+                <option name="charting.drilldown">all</option>
+                <drilldown>
+                    <link target="_blank">/app/$app_name$/$click.name2$</link>
+                </drilldown>
+            </chart>
+        </panel>
+    </row>
+</form>

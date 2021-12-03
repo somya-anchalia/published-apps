@@ -1,0 +1,343 @@
+<form version="1.1">
+  <label>Discovery board</label>
+  <search id="malops_base">
+    <query>host="$selected_input_name$" eventtype=cybereason_malops| dedup guidString sortby - _indextime  |fillnull value="unknown" rootCauseElementNames
+          detectionType detection_type_label|eventstats latest(status_label) as latest_status_label latest(managementStatus) as
+          latest_managementStatus by malop_guid| stats max(_time) as most_recent count values(elementValues.*) as
+          elementValues.* values(affectedMachines.*) as affectedMachines.* latest(latest_managementStatus) as
+        managementStatus latest(*_label) as *_label values(category) as category values(host) as host by malop_guid
+        rootCauseElementNames
+          detection_type_label | rename detection_type_label AS detectionType
+      </query>
+    <earliest>$time_restriction.earliest$</earliest>
+    <latest>$time_restriction.latest$</latest>
+  </search>
+  <search id="malops_detail_base" base="malops_base">
+    <query>stats dc(malop_guid) as count by rootCauseElementNames detectionType category</query>
+  </search>
+  <search id="base_activity">
+    <query>host="$selected_input_name$" eventtype=cybereason_malops |append [ |inputlookup append=t
+            data_labels |rename label as element_label | search
+            category="malop_element_name"| eval _time = now() + (86400 * 180)| fields _time element_label
+            ]|timechart dc(malop_guid) by element_label useother=f | where _time &lt;= now()
+        </query>
+    <earliest>$time_restriction.earliest$</earliest>
+    <latest>$time_restriction.latest$</latest>
+  </search>
+  <fieldset submitButton="false">
+    <input type="time" token="time_restriction">
+      <label>Time restriction</label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="selected_input_name" searchWhenChanged="true">
+      <label>Host input</label>
+      <search>
+        <query>| `cybereason_configured_inputs("base_url")`</query>
+        <earliest>$time_restriction.earliest$</earliest>
+        <latest>$time_restriction.latest$</latest>
+      </search>
+      <fieldForLabel>base_url</fieldForLabel>
+      <fieldForValue>base_url</fieldForValue>
+      <choice value="*">All</choice>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row id="discovery_single_value_time">
+    <panel>
+      <single>
+        <search base="malops_base">
+          <query>stats max(most_recent) AS max_time | convert ctime(max_time) AS
+              str_max_time timeformat="%Y/%m/%d %H:%M:%S %Z"| fields - max_time | append [ makeresults | eval
+              str_max_time = 0 ] | sort - str_max_time | head 1 | eval str_max_time = if(tonumber(str_max_time)&lt;1,"No
+              Events Found. Increase Time Range to show ",str_max_time)
+          </query>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051", "0x0877a6", "0xf8be34", "0xf1813f", "0xdc4e41"]</option>
+        <option name="rangeValues">[0,30,70,100]</option>
+        <option name="showSparkline">1</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="unitPosition">after</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+    </panel>
+  </row>
+  <row id="discovery_single_values">
+    <panel>
+      <single>
+        <search base="malops_base">
+          <query>
+            search managementStatus != "CLOSED"
+            | stats dc(malop_guid)
+          </query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="height">85</option>
+        <option name="rangeColors">["0x555","0x555"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">0</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="unit">Active Malops</option>
+        <option name="unitPosition">after</option>
+        <option name="useColors">1</option>
+      </single>
+      <single>
+        <search base="malops_base">
+          <query>rename  elementValues.* AS * |  stats dc(affectedMachines.elementValues{}.name) as total_affected_machines | append [ makeresults | eval total_affected_machines = 0 ] | sort -
+              total_affected_machines | head 1</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="height">85</option>
+        <option name="rangeColors">["0x555","0x555"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">0</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="unit">Affected Machines</option>
+        <option name="useColors">1</option>
+      </single>
+      <single>
+        <search base="malops_base">
+          <query>rename
+                elementValues.* AS * | stats dc(affectedUsers.elementValues{}.name) as total_affected_users  |append [ makeresults | eval total_affected_users = 0 ] | sort - total_affected_users
+              | head 1</query>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="height">85</option>
+        <option name="rangeColors">["0x555","0x555"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">0</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="unit">Affected Users</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+  </row>
+  <row id="cybereason_malop_activity">
+    <panel>
+      <single id="cybereason_malop_singles">
+        <title>Daily malop activity</title>
+        <search base="base_activity">
+          <query>fields _time *</query>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="colorMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="height">172</option>
+        <option name="rangeColors">["0x65a637","0xd93f3c"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">0</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="trellis.enabled">1</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <option name="trellis.splitBy">detectionType</option>
+        <option name="trendColorInterpretation">inverse</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel id="cybereason_malop_type">
+      <chart>
+        <title>Malop by type</title>
+        <search>
+          <query>host="$selected_input_name$" eventtype=cybereason_malops |eval decision_feature_label = if(isnotnull(decision_feature_label), decision_feature_label, decision_feature) |stats dc(malop_guid) as "Distinct Malop
+                guids" by decision_feature_label | rename decision_feature_label AS "Decision feature" | sort -
+                "Distinct Malop guids"</query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel id="cybereason_malop_status">
+      <table>
+        <title>Malop by status</title>
+        <search base="malops_base">
+          <query>stats dc(malop_guid) as count values(host) as host by latest_status_label| append[inputlookup
+                data_labels | search
+              category="malop_status" | rename
+                label AS latest_status_label | fields key latest_status_label | eval count=0] | sort count| eventstats
+                values(key) as key by latest_status_label| selfjoin key keepsingle=1 | stats sum(count) as count
+                values(key) as key values(host) as host by latest_status_label|eval key = mvindex(key,0)| rename
+              latest_status_label AS "Current status", count as "Issue count" | eval port = mvindex(split(host,":"), 1), host = mvindex(split(host,":"),0)
+              | sort - "Issue count" | filldown host port
+          </query>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">row</option>
+        <option name="refresh.display">progressbar</option>
+        <fields>["Current status","Issue count"]</fields>
+        <drilldown>
+          <condition match=" $row.Issue count$ &gt; 0">
+            <link target="_blank">https://$row.host$:$row.port$/#/discovery/inbox?filter=managementStatus::$row.key$</link>
+          </condition>
+          <condition match=" $row.Issue count$ &lt; 1">
+            <link target="_blank">https://$row.host$/#/discovery/inbox</link>
+          </condition>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel id="cybereason_malops_by_time">
+      <chart>
+        <title>Malops by time</title>
+        <search>
+          <query>host="$selected_input_name$" eventtype=cybereason_malops | timechart count by category_label</query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">Number of Malops</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+        <option name="height">270</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+  </row>
+  <row id="row_malop_4">
+    <panel>
+      <chart>
+        <title>Infections</title>
+        <search base="malops_detail_base">
+          <query>search category="MALICIOUS_INFECTION" |chart sum(count) as count over detectionType by
+                        rootCauseElementNames
+                    </query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+  </row>
+  <row id="row_malop_5">
+    <panel>
+      <chart>
+        <title>Privilege Escalations</title>
+        <search base="malops_detail_base">
+          <query>search category="privilege_escalation" | chart count over detectionType by
+                        rootCauseElementNames
+                    </query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Scanning</title>
+        <search base="malops_detail_base">
+          <query>search category="*scanning*" | chart count over detectionType by rootCauseElementNames
+                    </query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+  </row>
+  <row id="row_malop_6">
+    <panel>
+      <chart>
+        <title>Lateral Movement</title>
+        <search base="malops_detail_base">
+          <query>search category="lateral_movement"| chart count over detectionType by rootCauseElementNames
+                    </query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Command and Control</title>
+        <search base="malops_detail_base">
+          <query>search category="cnc*"| chart count over detectionType by rootCauseElementNames</query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+  </row>
+  <row id="row_malop_7">
+    <panel>
+      <chart>
+        <title>Data Theft</title>
+        <search base="malops_detail_base">
+          <query>search category="*theft*"| chart count over detectionType by rootCauseElementNames</query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Ransomware</title>
+        <search base="malops_detail_base">
+          <query>search category="ransomware"| chart count over detectionType by rootCauseElementNames
+                    </query>
+        </search>
+        <option name="charting.axisTitleX.text">Detection type</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+      </chart>
+    </panel>
+  </row>
+</form>

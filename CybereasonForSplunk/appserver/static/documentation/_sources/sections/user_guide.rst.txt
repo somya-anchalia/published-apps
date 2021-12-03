@@ -1,0 +1,72 @@
+Configure |long_name|
+---------------------
+
+- Install the App according to your environment (see steps above)
+- Navigate to "App > |ia_name| > Administration > Application Configuration"
+
+Application Configuration Dashboard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To configure the Cybereason application you should start on the `Application Configuration` page ("Administration > Application Configuration")*[]:
+
+Application Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+On this screen you can set the base index via event type as well as indicating that you have configured the app. Make sure you click the *SAVE* button to access the additional dashboards.
+
+Encrypted Credentials
+~~~~~~~~~~~~~~~~~~~~~
+
+You can view/delete existing credentials on this tab. These are credentials that are being used by existing modular inputs in the Cybereason application. These credentials are the credentials used to connect to Cybereason appliances.
+
+Cybereason
+~~~~~~~~~~
+
+On this screen you can view and make any changes to existing modular inputs. As you make changes and tab between fields the modular input is modified.
+
+Creating New Credentials
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default creating a new modular input with a username and password specified will create the necessary encrypted credentials. However if you want to create encrypted credentials manually follow this process:
+
+- Navigate to the "Credentials" tab.
+- To create a new encrypted credential, click the `Create New Credential` button and fill in with the appropriate username and password.
+- The realm is the application name where the encrypted credential is created + the username.
+
+*NOTE: By default creating a new modular input will automatically create a new encrypted credential so this process is not necessary unless you need a new credential for another purpose.*
+
+Creating New Cybereason Inputs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**NOTE:** You will need to configure a new modular input for each Cybereason host.
+
+**NOTE:** The Suspicious data type should be only pulled 1 once per day. This particular input pulls all available suspicious items, *not* just the time-based delta, at the time of ingest. Please configure a separate input with interval `600` for the suspicious data type.
+
+- To create a new data input, click the `Create New Cybereason Input` button and fill in the following fields. Those with a red asterisk on the screen are required.
+
+  - Modular Input Name: Name for the data input configuration.
+  - Base URL: The hostname or IP address and port of the Cybereason service. By default you can specify hostname:443.
+  - Username: The username used to connect to the service.
+  - Password: The password for the previously specified service.
+  - Toggle all data keys: Check to select all data keys.
+  - Data keys: List of endpoints available on the Cybereason service. Check the data key if you wish to pull event data.
+  - Interval: The number of seconds indicate how often the input will poll for new data. This setting must be at least 60.
+  - Index: This sets the index for data to be written to. This setting should be changed from `default`, which normally writes to the `main` index, to a specified index for best performance. The index must exist on the Search Head and Indexer.
+
+- After creating the modular input you may need to disable/re-enable the input in "Settings > Data Inputs > |long_name|" to activate the input.
+
+**NOTE:** When configuring the modular input through the Application Configuration dashboard, the password is automatically encrypted into the credential store. If you need to change the credential, create a new credential, and reference the host/user pair in the modular input configuration. An encrypted credential is required for this Splunk App.
+
+
+Indexes
+-------
+
+By default all events will be written to the "main" index. You should change the index in the configuration files to match your specific index. 
+
+Troubleshoot |long_name|
+------------------------
+
+#. Check the Monitoring Console (`>=v6.5`) for errors
+#. Visit the `Application Health` dashboard
+#. Check for errors in ``index=_internal sourcetype=modularinput OR sourcetype=restclient log_level=ERROR`` OR ``index=<yourindex> sourcetype=CyberreasonForSplunk:error``
+#. Execute ``$SPLUNK_HOME/bin/splunk diag --collect app:CybereasonForSplunk`` and send the diag to Cybereason Support.

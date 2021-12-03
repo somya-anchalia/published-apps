@@ -1,0 +1,34 @@
+Lookups
+-------
+
+|long_name| contains the following lookup files.
+
+- labels.csv
+  - contains the labels for use with the Cybereason data
+- malop_types.csv
+  - a lookup that helps drive panels
+
+Event Generator
+---------------
+
+|long_name| does make use of an event generator. This allows the product to display data, when there are no inputs configured. Each input listed below must be enabled locally. They are disabled by default.
+
+You can access the eventgen configuration tab in the Application Configuration dashboard.
+
+- cybereason_users.sample
+- cybereason_malops_rootCauseElements.sample
+- cybereason_malware.sample
+- cybereason_malops_affectedUsers.sample
+- cybereason_malops_filesToRemediate.sample
+- cybereason_malop.sample
+- cybereason_malops_suspects.sample
+- cybereason_malops_affectedMachines.sample
+- cybereason_suspicious.sample
+
+
+Acceleration
+------------
+
+#. Summary Indexing: No
+#. Data Model Acceleration: No
+#. Report Acceleration: No

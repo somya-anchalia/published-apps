@@ -1,0 +1,141 @@
+<form version="1.1">
+    <label>Suspicions Insights</label>
+    <search id="suspicious_base_time">
+        <query>host="$selected_input_name$" eventtype=cybereason_suspicious | rename elementValues.* AS * |
+            `new_time_format(creationTime)` | rename new_time AS new_creation_time |bin _time as btime |fillnull
+            value="unknown" elementDisplayName parentProcess.elementValues{}.name | stats count by
+            parentProcess.elementValues{}.name elementDisplayName btime | eval _time = btime
+        </query>
+        <earliest>$time_restriction.earliest$</earliest>
+        <latest>$time_restriction.latest$</latest>
+    </search>
+    <search id="suspicious_base_stats">
+        <query>host="$selected_input_name$" eventtype=cybereason_suspicious | rename elementValues.* AS * |
+            `new_time_format(creationTime)` | rename new_time AS new_creation_time | stats count
+            values(user) AS user_name values(machine) AS
+            machine_name values(new_creation_time) AS new_creation_time values(command) AS command_line
+            values(parentProcess.elementValues{}.name) as parent_process values(imageFile.sha1String) as
+            imageFile.sha1String values(productType) AS product_type
+            values(elementDisplayName) as elementDisplayName by guid | convert ctime(new_creation_time) AS creation_time
+            | fields - new_creation_time
+        </query>
+        <earliest>$time_restriction.earliest$</earliest>
+        <latest>$time_restriction.latest$</latest>
+    </search>
+    <fieldset submitButton="false">
+        <input type="time" token="time_restriction">
+            <label>Time restriction</label>
+            <default>
+                <earliest>-30d@d</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+        <input type="dropdown" token="selected_input_name" searchWhenChanged="true">
+            <label>Host input</label>
+            <search>
+                <query>| `cybereason_configured_inputs("base_url")`</query>
+                <earliest>$time_restriction.earliest$</earliest>
+                <latest>$time_restriction.latest$</latest>
+            </search>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>base_url</fieldForLabel>
+            <fieldForValue>base_url</fieldForValue>
+        </input>
+    </fieldset>
+    <row id="tabs">
+        <panel>
+            <html>
+                <ul id="tabs" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="row_suspicious_1">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="row_suspicious_2">Insights</a>
+                    </li>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="row_suspicious_1">
+        <panel>
+            <table>
+                <title>Top 10 suspicious parent processes or executables</title>
+                <search base="suspicious_base_stats">
+                    <query>stats values(imageFile.sha1String) as sha1String sum(count) as count by parent_process
+                        | sort - count
+                        | head 10 | rename parent_process as "Parent process" sha1String as "SHA1 String" count as
+                        "Count"
+                    </query>
+                </search>
+                <option name="drilldown">cell</option>
+                <format field="sparkline" type="sparkline">
+                    <option name="drilldown">none</option>
+                    <option name="type">bar</option>
+                    <option name="barColor">#009ABF</option>
+                    <option name="nullColor">#009ABF</option>
+                </format>
+            </table>
+        </panel>
+        <panel>
+            <table>
+                <title>Top 10 suspicious sub-processes or executables</title>
+                <search base="suspicious_base_stats">
+                    <query>stats values(imageFile.sha1String) as sha1String sum(count) as count by elementDisplayName |
+                        sort - count | head 10| rename elementDisplayName as "Element display name" sha1String as "SHA1
+                        String" count as "Count"
+                    </query>
+                </search>
+                <option name="drilldown">cell</option>
+            </table>
+        </panel>
+    </row>
+    <row id="row_suspicious_2">
+        <panel>
+            <input type="text" token="user_filter" searchWhenChanged="true">
+                <label>User</label>
+                <default>*</default>
+                <initialValue>*</initialValue>
+            </input>
+            <input type="text" token="machine_filter" searchWhenChanged="true">
+                <label>Machine</label>
+                <default>*</default>
+                <initialValue>*</initialValue>
+            </input>
+            <input type="text" token="cmd_filter" searchWhenChanged="true">
+                <label>Command</label>
+                <default>*</default>
+                <initialValue>*</initialValue>
+            </input>
+            <table>
+                <title>Details</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_suspicious machine="$machine_filter$"
+                        command="$cmd_filter$" user="$user_filter$"| rename elementValues.* AS * |
+                        `new_time_format(creationTime)` | rename new_time AS new_creation_time | stats count
+                        values(user) AS User values(machine) AS
+                        Machine values(new_creation_time) AS new_creation_time values(commandLine) AS command_line
+                        values(parentProcess.elementValues{}.name) as parent_process values(productType) AS product_type
+                        values(imageFile.sha1String) as ImageFile
+                        values(elementDisplayName) as elementDisplayName by guid|rename guid AS Guid | convert
+                        ctime(new_creation_time) AS "Creation time"
+                        | fields - new_creation_time| table parent_process, Machine, User, "Creation time",
+                        Guid,ImageFile, "Creation time" command_line
+                        |eval command_line=substr(command_line,0,50)."...".substr(command_line,-50) |
+                        rename command_line AS "Command line" parent_process as "Parent process" ImageFile AS "Image file hash"
+                        | fields * "Creation time"
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="count">5</option>
+                <option name="drilldown">row</option>
+                <drilldown>
+                    <link target="_blank">search?q=host="$selected_input_name$" eventtype=cybereason_suspicious
+                        machine="$machine_filter$"
+                        command="$cmd_filter$" user="$user_filter$" guid = "$row.Guid$"&amp;earliest=$time_restriction.earliest$&amp;latest=$time_restriction.latest$</link>
+                </drilldown>
+            </table>
+        </panel>
+    </row>
+</form>

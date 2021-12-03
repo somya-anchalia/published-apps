@@ -1,0 +1,6 @@
+Version |version| of |long_name| incorporates the following Third-party software or third-party services.
+
+.. include:: ../../node_modules/aplura/Third_Party_Notices/Aplura.txt
+.. include:: ../../node_modules/aplura/Third_Party_Notices/Markdownjs.txt
+.. include:: ../../node_modules/aplura/Third_Party_Notices/jquery.txt
+.. include:: ../../node_modules/aplura/Third_Party_Notices/d3.txt

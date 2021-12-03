@@ -1,0 +1,6 @@
+Version 1.0.5
+-------------
+
+- Improvement
+
+    - Splunk Cloud Updates

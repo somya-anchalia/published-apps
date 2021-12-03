@@ -1,0 +1,31 @@
+Version 1.0.2
+-------------
+
+- Bug
+
+    - [CYB-41] - IA shipped with no log.cfg
+    - [CYB-43] - Remove URL inspection
+    - [DESK-681] - Convert From All Suspicions To time_bound
+
+- Improvement
+
+    - [CYB-39] - Update versioned API call
+    - [CYB-42] - Malware Endpoint Change
+    - [CYB-44] - Better Handling of HTML Error Messages
+    - [CYB-45] - Improper Pagination on >17.5 API Calls
+    - [DESK-663] - Last Activity Sorting is Incorrect
+    - [DESK-664] - Classification Type And File Path Fields Are Empty For Powershell
+    - [DESK-665] - Change Default Time Filter To Last 30 Days
+    - [DESK-666] - Suspicious Insights Tab Not Functioning
+    - [DESK-667] - Malop Inbox - Malop Type And Hashes Are Empty For Blacklisted IP
+    - [DESK-668] - Malop Inbox - Sort by Last Activity Desc - Malops From Previous Year Are Presented First
+    - [DESK-669] - Malop Inbox - Multiple Values For Affected Machines
+    - [DESK-670] - Malop Inbox - File Hashes Section Is Empty For Obscured Extension Malop
+    - [DESK-671] - Malop Inbox - Malop Type Is Empty For Custom Rule Malop
+    - [DESK-672] - Malop Inbox - Malop Type Is Empty For Pass The Hash Malop
+    - [DESK-700] - Malware Inbox - Unknown And App Control Malware Are Not Presented At Inbox
+    - [DESK-701] - Malware Inbox - Fileless Malware Data Is Not Presented For Last Month
+    - [DESK-702] - Malware Inbox - Multiple Values For Scan Time
+    - [DESK-703] - Malop Statistics - Machine Data Discrepancy
+    - [DESK-704] - Malop Statistics - Users And Files Data Discrepancy
+    - [DESK-706] - Malop Inbox - Long Process List Breaks The Layout

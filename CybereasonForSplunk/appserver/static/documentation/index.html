@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Cybereason for Splunk App’s documentation! &#8212; Cybereason For Splunk 1.5.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-cybereason-for-splunk-app-s-documentation">
+<h1>Welcome to Cybereason for Splunk App’s documentation!</h1>
+</div>
+<div class="section" id="overview">
+<h1>Overview</h1>
+<div class="section" id="about-long-name">
+<h2>About Cybereason For Splunk</h2>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">About Cybereason For Splunk</span></caption>
+<colgroup>
+<col style="width: 60%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Author</p></td>
+<td><p>Metron Labs, Cybereason</p></td>
+</tr>
+<tr class="row-even"><td><p>App Version</p></td>
+<td><p>1.5.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>App Build</p></td>
+<td><p>184</p></td>
+</tr>
+<tr class="row-even"><td><p>Vendor Products</p></td>
+<td><p>Cybereason</p></td>
+</tr>
+<tr class="row-odd"><td><p>Has index-time operations</p></td>
+<td><p>true, the included TA add-on must be placed on the indexers</p></td>
+</tr>
+<tr class="row-even"><td><p>Creates an index</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-odd"><td><p>Implements summarization</p></td>
+<td><p>Currently, the app does not generate summaries</p></td>
+</tr>
+</tbody>
+</table>
+<p>Version 1.5.0 of Cybereason For Splunk is compatible with:</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">Compatability</span></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Splunk Enterprise versions</p></td>
+<td><p>8.2 or higher</p></td>
+</tr>
+<tr class="row-even"><td><p>Platforms</p></td>
+<td><p>Splunk Enterprise, Splunk Cloud</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Cybereason App for Splunk enables you to gain deep insight &amp; visibility into your endpoints, detect advanced attacks based on AI hunting, and take response actions within Splunk. The Cybereason AI Hunting Engine automatically asks a complex set of questions of data collected from all of your endpoints at a rate of 8 million calculations per second, 24 hours a day, 7 days a week. This means the solution is continuously hunting on your behalf by asking the same sorts of questions advanced security analysts would ask as they hunt for threats inside an environment. The difference, however, is that the Cybereason malicious activity models run constantly, and continually adapt and evolve according to the data the solution receives and analyzes.</p>
+<p>When the Cybereason AI Hunting Engine identifies malicious behavior, it’s classified based on context and severity. Suspicions represent multiple pieces of anomalous behavior which are related and therefore more likely to be malicious. Malops (malicious operations) are a collection of related suspicious activities that are highly likely to indicate a security incident, and are defined in a way that minimizes the likelihood of analysts spending time investigating benign activities or false positives. Both Suspicions and Malops are presented in Splunk along with insights that give context to the alerts so you can quickly understand what is happening in your environment.</p>
+</div>
+<div class="section" id="scripts-and-binaries">
+<h2>Scripts and binaries</h2>
+<p>This App provides the following scripts:</p>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Scripts</span></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>cybereason.py</p></td>
+<td><p>This python file controls the ability to interface with Cybereason.</p></td>
+</tr>
+<tr class="row-even"><td><p>cybereason_rest_client.py</p></td>
+<td><p>This Python class allows re-use of the cybereason api for various applications.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Diag.py</p></td>
+<td><p>Allows diag-targeted collection of information.</p></td>
+</tr>
+<tr class="row-even"><td><p>ModularInput.py</p></td>
+<td><p>Inheritable Class to create Modular Inputs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Utilities.py</p></td>
+<td><p>Allows utility interactions with Splunk Endpoints</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="release-notes">
+<h1>Release notes</h1>
+<div class="section" id="version-1-4-2">
+  <h2>Version 1.5.0</h2>
+  <ul>
+  <li><p>Improvement</p>
+  <blockquote>
+  <div>
+  <ul class="simple">
+  <li><p>Upgraded dashboards to version 1.1 so that they work with Splunk Cloud 8.2</p></li>
+  </ul>
+  </div></blockquote>
+  </li>
+  </ul>
+  </div> 
+<div class="section" id="version-1-4-2">
+<h2>Version 1.4.2</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Added suffix to child processes of Webshell malops for better identification</p></li>
+<li><p>Handled an exception while fetching server info for User agent</p></li>
+<li><p>Corrected the title of a panel in the Discovery board</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div> 
+<div class="section" id="version-1-4-1">
+<h2>Version 1.4.1</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Better encryption facility for JWT authentication mode</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>  
+<div class="section" id="version-1-4-0">
+<h2>Version 1.4.0</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Comments are now included in the malop events</p></li>
+<li><p>New filters for User Action Logs for better querying</p></li>
+<li><p>Query enhancements for action logs</p></li>
+<li><p>Logging improvement for successful login</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>Documentation</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Added the steps to update credentials for an existing input</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="version-1-3-0">
+<h2>Version 1.3.0</h2>
+<ul>
+<li><p>Feature</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>A new feature to turn off Logon Session data input from the User configuration settings</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Better error handling for processing events</p></li>
+<li><p>Defined a new macro to query action logs in order to improve flexibility</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Resolved some issues related to User action logs</p></li>
+<li><p>Generating a new JWT token for authorization once the previous JWT has expired</p></li>
+<li><p>Removed a duplicate About tab from the app configuration page</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-2-1">
+<h2>Version 1.2.1</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>The api headers is updated to contain User-agent detail which will include the application version and server address</p></li>
+<li><p>The app now has the capability to log stacktrace if any exception occurs</p></li>
+<li><p>User action logs will be temporarily stored in the logs directory and removed after they have been processed</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-2-0">
+<h2>Version 1.2.0</h2>
+<ul>
+<li><p>Enhancement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Enabled the global field extraction for the app</p></li>
+<li><p>Added the action field for malop and malware events so that events get tagged correctly by the malware data model</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-1-3">
+<h2>Version 1.1.3</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Added a validation while fetching child processes for webshell typed malops</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-1-2">
+<h2>Version 1.1.2</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Minor change in the event type of the User audit log filter</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-1-1">
+<h2>Version 1.1.1</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>User action logs can now be configured using User Activity Input button which has a default interval of 24h as it has a significant footprint</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-6">
+<h2>Version 1.0.6</h2>
+<ul>
+<li><p>Enhancements</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Separate input button in app configuration for users with default interval time of 24 hours as it has a significant footprint by default</p></li>
+<li><p>All new dashboard to monitor action logs</p></li>
+<li><p>Severity values for Malop inbox table</p></li>
+<li><p>Option to authenticate using JWT token</p></li>
+<li><p>Removed troubleshooting logs to make the app space efficient</p></li>
+<li><p>Authentication data model to keep track of user log-ins once every 24h</p></li>
+<li><p>Malicious process of the webshell malop will now contain all of the child processes (and their children, and so on) </p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div>
+<ul class="simple">
+<li><p>Fixed duplicate malwares bug to make the app more memory efficienct</p></li>
+<li><p>Resolved broken pipe error that obstructed the app's execution sometimes</p></li>
+<li><p>Added missing validations to improve application workflow</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-4">
+<div class="section" id="version-1-0-5">
+<h2>Version 1.0.5</h2>
+<ul>
+<li><p>Improvement</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Splunk Cloud Updates</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-4">
+<h2>Version 1.0.4</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-66] - Login Routine causes cmp recursion</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-3">
+<h2>Version 1.0.3</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[DESK-710] - Add code to disregard comments field on malops events</p></li>
+<li><p>[DESK-716] - Fix paging issue with malware events</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-2">
+<h2>Version 1.0.2</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-41] - IA shipped with no log.cfg</p></li>
+<li><p>[CYB-43] - Remove URL inspection</p></li>
+<li><p>[DESK-681] - Convert From All Suspicions To time_bound</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Improvement</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-39] - Update versioned API call</p></li>
+<li><p>[CYB-42] - Malware Endpoint Change</p></li>
+<li><p>[CYB-44] - Better Handling of HTML Error Messages</p></li>
+<li><p>[CYB-45] - Improper Pagination on &gt;17.5 API Calls</p></li>
+<li><p>[DESK-663] - Last Activity Sorting is Incorrect</p></li>
+<li><p>[DESK-664] - Classification Type And File Path Fields Are Empty For Powershell</p></li>
+<li><p>[DESK-665] - Change Default Time Filter To Last 30 Days</p></li>
+<li><p>[DESK-666] - Suspicious Insights Tab Not Functioning</p></li>
+<li><p>[DESK-667] - Malop Inbox - Malop Type And Hashes Are Empty For Blacklisted IP</p></li>
+<li><p>[DESK-668] - Malop Inbox - Sort by Last Activity Desc - Malops From Previous Year Are Presented First</p></li>
+<li><p>[DESK-669] - Malop Inbox - Multiple Values For Affected Machines</p></li>
+<li><p>[DESK-670] - Malop Inbox - File Hashes Section Is Empty For Obscured Extension Malop</p></li>
+<li><p>[DESK-671] - Malop Inbox - Malop Type Is Empty For Custom Rule Malop</p></li>
+<li><p>[DESK-672] - Malop Inbox - Malop Type Is Empty For Pass The Hash Malop</p></li>
+<li><p>[DESK-700] - Malware Inbox - Unknown And App Control Malware Are Not Presented At Inbox</p></li>
+<li><p>[DESK-701] - Malware Inbox - Fileless Malware Data Is Not Presented For Last Month</p></li>
+<li><p>[DESK-702] - Malware Inbox - Multiple Values For Scan Time</p></li>
+<li><p>[DESK-703] - Malop Statistics - Machine Data Discrepancy</p></li>
+<li><p>[DESK-704] - Malop Statistics - Users And Files Data Discrepancy</p></li>
+<li><p>[DESK-706] - Malop Inbox - Long Process List Breaks The Layout</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-1">
+<h2>Version 1.0.1</h2>
+<ul>
+<li><p>Bug</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-38] - Cloud Vetting</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-0">
+<h2>Version 1.0.0</h2>
+<ul>
+<li><p>Test and QA</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-27] - Failed Test - Evengent Docs</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Bug</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-13] - Remove Proxy Configs for Mod Inputs</p></li>
+<li><p>[CYB-24] - Modular Input throwing 400 errors</p></li>
+<li><p>[CYB-32] - More UI Changes</p></li>
+<li><p>[CYB-34] - Counting of Fields</p></li>
+<li><p>[CYB-35] - Enable Proxy configurations</p></li>
+<li><p>[CYB-36] - Self Signed Certificate throws error on request</p></li>
+<li><p>[CYB-37] - API Inconsistent - Throws exception on string “boolean”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>New Feature</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-6] - Modular Input</p></li>
+<li><p>[CYB-7] - Field Extractions and CIM Compliance</p></li>
+<li><p>[CYB-8] - Discovery Dashboard</p></li>
+<li><p>[CYB-9] - Inbox Dashboard</p></li>
+<li><p>[CYB-10] - Malop Breakdown Dashboard</p></li>
+<li><p>[CYB-11] - Malware Dashboard</p></li>
+<li><p>[CYB-12] - Suspicions Dashboard</p></li>
+<li><p>[CYB-14] - Malops Breakdown - Additional detail</p></li>
+<li><p>[CYB-15] - App Icons</p></li>
+<li><p>[CYB-17] - Health Dashboard</p></li>
+<li><p>[CYB-26] - Create Eventgen</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Improvement</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>[CYB-16] - Discovery Dashboard Modifications</p></li>
+<li><p>[CYB-18] - Inbox Dashboard Cell Drilldown</p></li>
+<li><p>[CYB-20] - Add Host Dropdown - All Dashboards</p></li>
+<li><p>[CYB-22] - Remove Menu Slider</p></li>
+<li><p>[CYB-23] - Discovery Board</p></li>
+<li><p>[CYB-25] - Suspicions Inbox Update searches</p></li>
+<li><p>[CYB-28] - Slight Updates</p></li>
+<li><p>[CYB-29] - CSS Changes</p></li>
+<li><p>[CYB-30] - Updates to Interface</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="known-issues">
+<h2>Known Issues</h2>
+<p>Version 1.0.5 of Cybereason For Splunk has the following known issues:</p>
+<ul class="simple">
+<li><p>None</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="support-and-resources">
+<h1>Support and resources</h1>
+<div class="section" id="questions-and-answers">
+<h2>Questions and answers</h2>
+<p>Access questions and answers specific to Cybereason For Splunk at <a class="reference external" href="https://answers.splunk.com">https://answers.splunk.com</a> . Be sure to tag your question with the App.</p>
+</div>
+<div class="section" id="support">
+<h2>Support</h2>
+<ul class="simple">
+<li><p>Support Email: <a class="reference external" href="mailto:support&#37;&#52;&#48;cybereason&#46;com">support<span>&#64;</span>cybereason<span>&#46;</span>com</a></p></li>
+<li><p>Support Offered: Email, Community Engagement</p></li>
+</ul>
+<p>Support is available via email at <a class="reference external" href="mailto:support&#37;&#52;&#48;cybereason&#46;com">support<span>&#64;</span>cybereason<span>&#46;</span>com</a>.</p>
+</div>
+</div>
+<div class="section" id="installation-and-configuration">
+<h1>Installation and Configuration</h1>
+<div class="section" id="software-requirements">
+<h2>Software requirements</h2>
+<div class="section" id="splunk-enterprise-system-requirements">
+<h3>Splunk Enterprise system requirements</h3>
+<p>Because this App runs on Splunk Enterprise, all of the [Splunk Enterprise system requirements](<a class="reference external" href="https://docs.splunk.com/Documentation/Splunk/latest/Installation/Systemrequirements">https://docs.splunk.com/Documentation/Splunk/latest/Installation/Systemrequirements</a>) apply.</p>
+</div>
+</div>
+<div class="section" id="download">
+<h2>Download</h2>
+<p>Download Cybereason For Splunk at <a class="reference external" href="https://splunkbase.splunk.com">https://splunkbase.splunk.com</a>.</p>
+</div>
+<div class="section" id="installation-steps">
+<h2>Installation steps</h2>
+<p>NOTE: Where referenced, the IA-CybereasonForSplunk and TA-CybereasonForSplunk versions of this App are located on Splunkbase.</p>
+<div class="section" id="deploy-to-single-server-instance">
+<h3>Deploy to single server instance</h3>
+<p>Follow these steps to install the app in a single server instance of Splunk Enterprise:</p>
+<ol class="arabic simple">
+<li><p>Deploy as you would any App, and restart Splunk.</p></li>
+<li><p>Install IA-CybereasonForSplunk.</p></li>
+<li><p>Configure.</p></li>
+</ol>
+</div>
+<div class="section" id="deploy-to-splunk-cloud">
+<h3>Deploy to Splunk Cloud</h3>
+<ol class="arabic simple">
+<li><p>Have your Splunk Cloud Support handle this installation. Do NOT install the IA on the same system as the App.</p></li>
+<li><p>You may consider using an on-premise Heavy Forwarder to install IA-CybereasonForSplunk, and send the logs to Splunk Cloud.</p></li>
+</ol>
+</div>
+<div class="section" id="deploy-to-a-distributed-environment">
+<h3>Deploy to a Distributed Environment</h3>
+<ol class="arabic simple">
+<li><p>For each Search Head in the environment, deploy a non-configured copy of the App. DO NOT SEND TA or IA to a Search Head Cluster (SHC).</p></li>
+<li><p>For each indexer in the environment, deploy a copy of the TA-CybereasonForSplunk Add-On that is located as mentioned above.</p></li>
+<li><p>For a single “Data Collection Node” OR “Heavy Forwarder” (a full instance of Splunk is required), install IA-CybereasonForSplunk and configure through the GUI.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="user-guide">
+<h1>User Guide</h1>
+<div class="section" id="configure-long-name">
+<h2>Configure Cybereason For Splunk</h2>
+<ul class="simple">
+<li><p>Install the App according to your environment (see steps above)</p></li>
+<li><p>Navigate to “App &gt; IA-CybereasonForSplunk &gt; Administration &gt; Application Configuration”</p></li>
+</ul>
+<div class="section" id="application-configuration-dashboard">
+<h3>Application Configuration Dashboard</h3>
+<p>To configure the Cybereason application you should start on the <cite>Application Configuration</cite> page (“Administration &gt; Application Configuration”)*[]:</p>
+</div>
+<div class="section" id="application-configuration">
+<h3>Application Configuration</h3>
+<p>On this screen you can set the base index via event type as well as indicating that you have configured the app. Make sure you click the <em>SAVE</em> button to access the additional dashboards.</p>
+</div>
+<div class="section" id="encrypted-credentials">
+<h3>Encrypted Credentials</h3>
+<p>You can view/delete existing credentials on this tab. These are credentials that are being used by existing modular inputs in the Cybereason application. These credentials are the credentials used to connect to Cybereason appliances.</p>
+</div>
+<div class="section" id="cybereason">
+<h3>Cybereason</h3>
+<p>On this screen you can view and make any changes to existing modular inputs. As you make changes and tab between fields the modular input is modified.</p>
+</div>
+<div class="section" id="creating-new-cybereason-inputs">
+<h3>Creating New Cybereason Inputs</h3>
+<p><strong>NOTE:</strong> You will need to configure a new modular input for each Cybereason host.</p>
+<p><strong>NOTE:</strong> The Suspicious data type should be only pulled 1 once per day. This particular input pulls all available suspicious items, <em>not</em> just the time-based delta, at the time of ingest. Please configure a separate input with interval <cite>600</cite> for the suspicious data type.</p>
+<ul class="simple">
+<li><p>To create a new data input, click the <cite>Create New Cybereason Input</cite> button and fill in the following fields. Those with a red asterisk on the screen are required.</p>
+<ul>
+<li><p>Modular Input Name: Name for the data input configuration.</p></li>
+<li><p>Base URL: The hostname or IP address and port of the Cybereason service. By default you can specify hostname:443.</p></li>
+<li><p>Username: The username used to connect to the service.</p></li>
+<li><p>Password: The password for the previously specified service.</p></li>
+<li><p>Toggle all data keys: Check to select all data keys.</p></li>
+<li><p>Data keys: List of endpoints available on the Cybereason service. Check the data key if you wish to pull event data.</p></li>
+<li><p>Interval: The number of seconds indicate how often the input will poll for new data. This setting must be at least 60.</p></li>
+<li><p>Index: This sets the index for data to be written to. This setting should be changed from <cite>default</cite>, which normally writes to the <cite>main</cite> index, to a specified index for best performance. The index must exist on the Search Head and Indexer.</p></li>
+</ul>
+</li>
+<li><p>After creating the modular input you may need to disable/re-enable the input in “Settings &gt; Data Inputs &gt; Cybereason For Splunk” to activate the input.</p></li>
+</ul>
+<p><strong>NOTE:</strong> When configuring the modular input through the Application Configuration dashboard, the password is automatically encrypted into the credential store. If you need to change the credential, create a new credential, and reference the host/user pair in the modular input configuration. An encrypted credential is required for this Splunk App.</p>
+</div>
+</div>
+<div class="section" id="creating-new-credentials">
+<h3>Creating New Credentials</h3>
+<p>By default creating a new modular input with a username and password specified will create the necessary encrypted credentials. However if you want to create encrypted credentials manually follow this process:</p>
+<ul class="simple">
+<li><p>Navigate to the “Credentials” tab.</p></li>
+<li><p>To create a new encrypted credential, click the <cite>Create New Credential</cite> button and fill in with the appropriate username and password.</p></li>
+<li><p>The realm is the application name where the encrypted credential is created + the username.</p></li>
+</ul>
+<p><em>NOTE: By default creating a new modular input will automatically create a new encrypted credential so this process is not necessary unless you need a new credential for another purpose.</em></p>
+</div>
+<div class="section" id="updating-existing-credentials">
+<h3>Updating Existing Credentials</h3>
+<p>If you want to update existing credentials manually follow this process:</p>
+<ul class="simple">
+<li><p>Navigate to the “Cybereason” tab.</p></li>
+<li><p>Copy the Credential Realm of the Input for which credentials have to be updated.</p></li>
+<li><p>Navigate to the “Credential” tab.</p></li>
+<li><p>Search for the Credential using the copied Credential Realm.</p></li>
+<li><p>Delete the existing Credential of that Credential Realm using the delete button.</p></li>
+<li><p>To update credential, click the Create New Credential button and fill in with the appropriate information below:</p></li>
+<ul class="simple">
+<li><p>Username (The username of the configured input)</p></li>
+<li><p>Password (The new password for that username) </p></li>
+<li><p>Realm (Credential Realm of the configured input)</p></li>
+</ul>
+</ul>
+</div>
+<div class="section" id="indexes">
+<h2>Indexes</h2>
+<p>By default all events will be written to the “main” index. You should change the index in the configuration files to match your specific index.</p>
+</div>
+<div class="section" id="troubleshoot-long-name">
+<h2>Troubleshoot Cybereason For Splunk</h2>
+<ol class="arabic simple">
+<li><p>Check the Monitoring Console (<cite>&gt;=v6.5</cite>) for errors</p></li>
+<li><p>Visit the <cite>Application Health</cite> dashboard</p></li>
+<li><p>Check for errors using following queries: 
+<ul>
+<li><code class="docutils literal notranslate"><span class="pre">index=_internal</span> <span class="pre">sourcetype=modularinput</span> <span class="pre">OR</span> <span class="pre">sourcetype=restclient</span> <span class="pre">log_level=ERROR</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">index=&lt;yourindex&gt;</span> <span class="pre">sourcetype=CyberreasonForSplunk:error</span></code></p></li>
+</ul>
+</li>
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">$SPLUNK_HOME/bin/splunk</span> <span class="pre">diag</span> <span class="pre">--collect</span> <span class="pre">app:CybereasonForSplunk</span></code> and send the diag to Cybereason Support.</p></li>
+</ol>
+</div>
+<div class="section" id="lookups">
+<h2>Lookups</h2>
+<p>Cybereason For Splunk contains the following lookup files.</p>
+<ul class="simple">
+<li><p>labels.csv
+- contains the labels for use with the Cybereason data</p></li>
+<li><p>malop_types.csv
+- a lookup that helps drive panels</p></li>
+</ul>
+</div>
+<div class="section" id="event-generator">
+<h2>Event Generator</h2>
+<p>Cybereason For Splunk does make use of an event generator. This allows the product to display data, when there are no inputs configured. Each input listed below must be enabled locally. They are disabled by default.</p>
+<p>You can access the eventgen configuration tab in the Application Configuration dashboard.</p>
+<ul class="simple">
+<li><p>cybereason_users.sample</p></li>
+<li><p>cybereason_malops_rootCauseElements.sample</p></li>
+<li><p>cybereason_malware.sample</p></li>
+<li><p>cybereason_malops_affectedUsers.sample</p></li>
+<li><p>cybereason_malops_filesToRemediate.sample</p></li>
+<li><p>cybereason_malop.sample</p></li>
+<li><p>cybereason_malops_suspects.sample</p></li>
+<li><p>cybereason_malops_affectedMachines.sample</p></li>
+<li><p>cybereason_suspicious.sample</p></li>
+</ul>
+</div>
+<div class="section" id="acceleration">
+<h2>Acceleration</h2>
+<ol class="arabic simple">
+<li><p>Summary Indexing: No</p></li>
+<li><p>Data Model Acceleration: No</p></li>
+<li><p>Report Acceleration: No</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="third-party-notices">
+<h1>Third Party Notices</h1>
+<p>Version 1.0.5 of Cybereason For Splunk incorporates the following Third-party software or third-party services.</p>
+<div class="section" id="aplura-llc-components">
+<h2>Metron Labs</h2>
+<p></p>
+<p>This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, eMA  02110-1301, USA.</p>
+</div>
+<div class="section" id="id1">
+<h2>defusedxml</h2>
+<p>PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2</p>
+<p>1. This LICENSE AGREEMENT is between the Python Software Foundation
+(“PSF”), and the Individual or Organization (“Licensee”) accessing and
+otherwise using this software (“Python”) in source or binary form and
+its associated documentation.</p>
+<p>2. Subject to the terms and conditions of this License Agreement, PSF
+hereby grants Licensee a nonexclusive, royalty-free, world-wide
+license to reproduce, analyze, test, perform and/or display publicly,
+prepare derivative works, distribute, and otherwise use Python
+alone or in any derivative version, provided, however, that PSF’s
+License Agreement and PSF’s notice of copyright, i.e., “Copyright (c)
+2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 Python Software Foundation;
+All Rights Reserved” are retained in Python alone or in any derivative
+version prepared by Licensee.</p>
+<p>3. In the event Licensee prepares a derivative work that is based on
+or incorporates Python or any part thereof, and wants to make
+the derivative work available to others as provided herein, then
+Licensee hereby agrees to include in any such work a brief summary of
+the changes made to Python.</p>
+<p>4. PSF is making Python available to Licensee on an “AS IS”
+basis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND
+DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT
+INFRINGE ANY THIRD PARTY RIGHTS.</p>
+<p>5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON,
+OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.</p>
+<p>6. This License Agreement will automatically terminate upon a material
+breach of its terms and conditions.</p>
+<p>7. Nothing in this License Agreement shall be deemed to create any
+relationship of agency, partnership, or joint venture between PSF and
+Licensee.  This License Agreement does not grant permission to use PSF
+trademarks or trade name in a trademark sense to endorse or promote
+products or services of Licensee, or any third party.</p>
+<p>8. By copying, installing or otherwise using Python, Licensee
+agrees to be bound by the terms and conditions of this License
+Agreement.</p>
+</div>
+<div class="section" id="markdown-js">
+<h2>markdown.js</h2>
+<p>Released under the MIT license.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the “Software”), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div>
+<div class="section" id="jquery-js">
+<h2>jquery.js</h2>
+<p><a class="reference external" href="https://github.com/jquery/jquery/blob/master/LICENSE.txt">https://github.com/jquery/jquery/blob/master/LICENSE.txt</a></p>
+<p>Copyright JS Foundation and other contributors, <a class="reference external" href="https://js.foundation/">https://js.foundation/</a></p>
+<p>This software consists of voluntary contributions made by many
+individuals. For exact contribution history, see the revision history
+available at <a class="reference external" href="https://github.com/jquery/jquery">https://github.com/jquery/jquery</a></p>
+<p>The following license applies to all parts of this software except as
+documented below:</p>
+<hr class="docutils" />
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+“Software”), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<hr class="docutils" />
+<p>All files located in the node_modules and external directories are
+externally maintained libraries used by this software which have their
+own licenses; we recommend you read them, as their terms may differ from
+the terms above.</p>
+</div>
+<div class="section" id="d3-js">
+<h2>d3.js</h2>
+<p><a class="reference external" href="https://github.com/d3/d3/blob/master/LICENSE">https://github.com/d3/d3/blob/master/LICENSE</a></p>
+<p>Copyright 2010-2016 Mike Bostock
+All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:</p>
+<ul class="simple">
+<li><p>Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.</p></li>
+<li><p>Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.</p></li>
+<li><p>Neither the name of the author nor the names of contributors may be used to
+endorse or promote products derived from this software without specific prior
+written permission.</p></li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Metron Labs
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

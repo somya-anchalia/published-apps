@@ -1,0 +1,111 @@
+{
+    "modelName": "logon_sessions",
+    "displayName": "Logon Sessions",
+    "description": "Cybereason login sessions.",
+    "objectSummary": {
+        "Event-Based": 0,
+        "Transaction-Based": 0,
+        "Search-Based": 1
+    },
+    "objects": [
+        {
+            "objectName": "logon_sessions",
+            "displayName": "Logon Sessions",
+            "parentName": "BaseSearch",
+            "comment": "",
+            "fields": [
+                {
+                    "fieldName": "Creation_time",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Creation_time",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Element_name",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Element_name",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Logon_Type",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Logon_Type",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Owner_machine",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Owner_machine",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Processes",
+                    "owner": "logon_sessions",
+                    "type": "number",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Processes",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Remote_machine",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Remote_machine",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "User",
+                    "owner": "logon_sessions",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "User",
+                    "comment": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [],
+            "lineage": "logon_sessions",
+            "baseSearch": "index=main action=\"success\" | dedup guid\n| convert timeformat=\"%Y/%m/%d %H:%M:%S\" ctime(created) as \"Creation_time\"\n| eval \"Element_name\"=element_name\n| eval \"Processes\"=processes\n| eval \"Owner_machine\"=owner_machine\n| eval \"User\"=user\n| eval \"Remote_machine\"=remote_machine\n| eval \"Logon_Type\"=logon_type\n| sort \"Creation_time\""
+        }
+    ],
+    "objectNameList": [
+        "logon_sessions"
+    ]
+}

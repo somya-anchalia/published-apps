@@ -1,0 +1,7 @@
+Version 1.0.3
+-------------
+
+- Bug
+
+    - [DESK-710] - Add code to disregard comments field on malops events
+    - [DESK-716] - Fix paging issue with malware events

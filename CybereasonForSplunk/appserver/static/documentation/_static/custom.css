@@ -1,0 +1,56 @@
+@font-face {
+    font-family: Roboto;
+    src: url("/en-US/static/fonts/roboto-regular-webfont.woff") format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("/en-US/static/fonts/roboto-bold-webfont.woff") format("woff");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url("/en-US/static/fonts/roboto-light-webfont.woff") format("woff");
+    font-weight: 200;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Droid Sans Mono;
+    src: url("/en-US/static/fonts/droid-sans-mono-webfont.woff") format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Architects Daughter;
+    font-style: normal;
+    font-weight: 400;
+    src: url("/en-US/static/fonts/ArchitectsDaughter.ttf") format("truetype")
+}
+
+body {
+    font-family: Roboto, Calibri, sans-serif !important;
+}
+
+div.sphinxsidebar h3,
+div.sphinxsidebar h4 {
+    font-family: Roboto, Calibri, sans-serif !important;
+}
+
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6 {
+    font-family: Roboto, Calibri, sans-serif !important;
+}
+
+div.admonition p.admonition-title, div.sphinxsidebar input {
+    font-family: Roboto, Calibri, sans-serif !important;
+}

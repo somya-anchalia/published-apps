@@ -1,0 +1,97 @@
+<form version="1.1" stylesheet="asa_table_icon.css">
+    <label>Malop inbox</label>
+    <fieldset submitButton="false">
+        <input type="time" token="time_restriction">
+            <label>Time restriction</label>
+            <default>
+                <earliest>-30d@d</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+        <input type="dropdown" token="selected_input_name" searchWhenChanged="true">
+            <label>Host input</label>
+            <search>
+                <query>| `cybereason_configured_inputs("base_url")`</query>
+                <earliest>$time_restriction.earliest$</earliest>
+                <latest>$time_restriction.latest$</latest>
+            </search>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>base_url</fieldForLabel>
+            <fieldForValue>base_url</fieldForValue>
+        </input>
+        <input type="dropdown" token="selected_category">
+            <label>Malop category</label>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <choice value="MALICIOUS_INFECTION">Malicious Infection</choice>
+            <choice value="CNC_COMMUNICATION">CNC Communication</choice>
+            <choice value="RANSOMWARE">Ransomware</choice>
+            <choice value="PRIVILEGE_ESCALATION">Privilege Escalation</choice>
+            <choice value="LATERAL_MOVEMENT">Lateral Movement</choice>
+            <choice value="SCANNING">Scanning</choice>
+            <choice value="DATA_THEFT">Data Theft</choice>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <title>Malops: $malop_count$</title>
+            <html>
+                <style>.results-table tr.expanded-content-row td, .results-table tr.expanded-row td {
+                    background: none !important;
+                    }
+                    .expanded-content-row table tr:nth-child(odd) { background-color: #cccccc !important}
+                    .expanded-content-row table tr:nth-child(even) { background-color: #eeeeee !important}
+                </style>
+                <div id="table_row_expansion_001508_settings" style="display:none;"
+                     data-detail_search="eventtype=cybereason_malops_* host=&quot;$selected_input_name$&quot; | eval tmp_key=&quot;%key%&quot; | eval tmp_split_key = split(tmp_key, &quot;::&quot;), guid=mvindex(tmp_split_key, 0), last_activity_key=mvindex(tmp_split_key,1) | `new_time_format(timestamp)` |  where (malop_guid=guid) AND (new_time=last_activity_key) | stats values(name) AS &quot;Element Name&quot; by elementType| rename elementType as &quot;Element type&quot;"
+                     data-url_detail="Malop details" data-hide-fields="Host" data-detail_field="guid_key">
+                </div>
+             </html>
+            <table id="table_row_expansion_001508">
+                <search id="base_rows">
+                    <query>host="$selected_input_name$" category="$selected_category$" `cybereason_inbox` | eval
+                        rootCauseElementHashes=split(rootCauseElementHashes,",") | eval file_name_list=split(file_name,",")
+                        | eval length = mvcount(file_name_list)
+                        | eval file_name=if(length>1,tostring(length)+" processes",file_name)
+                        | convert ctime(new_created_time) AS "Created" | eval "Last Activity"=strftime(new_last_activity_time,"%Y-%m-%d %H:%M:%S")
+                        | stats latest(affectedMachines.totalValues) AS "Affected machines"
+                        values(category_label) AS "Detected activity" values(malop_type) AS "malop_type" values(detectionType) as detection_type
+                        values(decision_feature) as decision_feature values(file_name) as Name values(rootCauseElementHashes) as Hashes
+                        values(severity) AS "Severity"
+                        latest("Last Activity") as "Last activity" latest(new_last_activity_time) as new_last_activity_time latest(status_label) as Status values("Created") as
+                        Created by malop_guid,host
+                        | eval "Malop type"=coalesce(malop_type,detection_type,decision_feature)
+                        | eval "Malop details"="https://".host."/#/malop/".malop_guid | eval guid_key=malop_guid."::".new_last_activity_time | sort 0 - new_last_activity_time
+                        | fields Name "Malop details" "Malop type" "Affected machines" "Detected activity" "Last activity" "Created"
+                        Hashes Severity Status malop_guid host guid_key
+                        | rename malop_guid as Guid host as Host
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="refresh.display">progressbar</option>
+            </table>
+        </panel>
+    </row>
+    <row depends="$dontshow$">
+        <panel>
+            <single>
+                <search base="base_rows">
+                    <query>stats count</query>
+                    <progress>
+                        <eval token="malop_count">if($job.request.latest_time$=="rt","Count Unavailable in Real Time
+                            Searches", $result.count$)
+                        </eval>
+                    </progress>
+                    <done>
+                        <eval token="malop_count">if($job.request.latest_time$=="rt","Count Unavailable in Real Time
+                            Searches", $result.count$)
+                        </eval>
+                    </done>
+                </search>
+            </single>
+        </panel>
+    </row>
+</form>

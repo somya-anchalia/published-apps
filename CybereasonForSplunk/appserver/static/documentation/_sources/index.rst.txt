@@ -1,0 +1,77 @@
+Welcome to Cybereason for Splunk App's documentation!
+=====================================================
+
+.. toctree::
+   :maxdepth:
+   :caption: Contents:
+
+.. include:: variables_compiled.rst
+
+Overview
+========
+
+About |long_name|
+-----------------
+
+.. list-table:: About |long_name|
+   :widths: 15 10
+   :header-rows: 0
+
+   * - Author
+     - Aplura, LLC., Cybereason
+   * - App Version
+     - |version|
+   * - App Build
+     - |build|
+   * - Vendor Products
+     - Cybereason
+   * - Has index-time operations
+     - true, the included TA add-on must be placed on the indexers
+   * - Creates an index
+     - false
+   * - Implements summarization
+     - Currently, the app does not generate summaries
+
+.. include:: ./sections/about.rst
+
+Scripts and binaries
+--------------------
+
+.. include:: ./sections/scripts.rst
+
+Release notes
+=============
+
+.. include:: ./sections/release_notes_v1.0.5.rst
+.. include:: ./sections/release_notes_v1.0.4.rst
+.. include:: ./sections/release_notes_v1.0.3.rst
+.. include:: ./sections/release_notes_v1.0.2.rst
+.. include:: ./sections/release_notes_v1.0.1.rst
+.. include:: ./sections/release_notes_v1.0.0.rst
+
+Known Issues
+------------
+
+.. include:: ./sections/known_issues.rst
+
+Support and resources
+=====================
+
+.. include:: ./sections/support.rst
+
+Installation and Configuration
+==============================
+
+.. include:: ./sections/installation.rst
+
+User Guide
+==========
+
+.. include:: ./sections/user_guide.rst
+
+.. include:: ./sections/misc.rst
+
+Third Party Notices
+===================
+
+.. include:: ./sections/third_party.rst

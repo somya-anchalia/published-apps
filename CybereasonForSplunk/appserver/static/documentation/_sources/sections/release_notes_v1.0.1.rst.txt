@@ -1,0 +1,6 @@
+Version 1.0.1
+-------------
+
+- Bug
+
+    - [CYB-38] - Cloud Vetting

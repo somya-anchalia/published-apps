@@ -1,0 +1,21 @@
+decisionFeature,malop_type
+Process.connectionToMaliciousDomainByDomainRootCause(Malop decision),Connection to malicious domain
+Process.credentialTheftMalop(Malop decision),Attempted credential theft
+Process.filelessMalware(Malop decision),Fileless malware
+Process.maliciousByCodeInjection(Malop decision),Malicious by code injection
+Process.maliciousByDgaDetection(Malop decision),Malicious use of a domain generating algorithm
+Process.maliciousByRansomwareModule(Malop decision),Ransomware behavior
+Process.maliciousExecutionOfShellProcess(Malop decision),Malicious execution of shell process
+Process.maliciousShadowCopyDeletion(Malop decision),Ransomware behavior
+Process.maliciousUseOfPsexec(Malop decision),Malicious remote execution
+Process.ransomwareByHashReputation(Malop decision),Known ransomware by hash
+Process.maliciousExecutionOfPowerShell(Malop decision),Malicious use of Powershell
+Process.abusingWindowsAccessibilityFeatures(Malop decision),abusingWindowsAccessibilityFeatures
+Process.jscriptRATMalop(Malop decision),jscriptRATMalop
+Process.maliciousByDualExtensionByFileRootCause(Malop decision),Malicious by Obscured Extension
+Process.maliciousByScanningOfInjectedProcess(Malop decision),maliciousByScanningOfInjectedProcess
+Process.maliciousPrivilegeEscalation(Malop decision),maliciousPrivilegeEscalation
+Process.maliciousToolByHashReputation(Malop decision),maliciousToolByHashReputation
+Process.maliciousUseOfOSProcess(Malop decision),maliciousUseOfOSProcess
+Process.maliciousWebShellExecution(Malop decision),maliciousWebShellExecution
+Process.malwareByHashReputation(Malop decision),Known Malware by Hash

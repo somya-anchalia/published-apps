@@ -1,0 +1,14 @@
+Version |version| of |long_name| is compatible with:
+
+.. list-table:: Compatability
+   :widths: 12 12
+   :header-rows: 0
+
+   * - Splunk Enterprise versions
+     - |splunk_versions|
+   * - Platforms
+     - Splunk Enterprise
+
+The Cybereason App for Splunk enables you to gain deep insight & visibility into your endpoints, detect advanced attacks based on AI hunting, and take response actions within Splunk. The Cybereason AI Hunting Engine automatically asks a complex set of questions of data collected from all of your endpoints at a rate of 8 million calculations per second, 24 hours a day, 7 days a week. This means the solution is continuously hunting on your behalf by asking the same sorts of questions advanced security analysts would ask as they hunt for threats inside an environment. The difference, however, is that the Cybereason malicious activity models run constantly, and continually adapt and evolve according to the data the solution receives and analyzes.
+
+When the Cybereason AI Hunting Engine identifies malicious behavior, it’s classified based on context and severity. Suspicions represent multiple pieces of anomalous behavior which are related and therefore more likely to be malicious. Malops (malicious operations) are a collection of related suspicious activities that are highly likely to indicate a security incident, and are defined in a way that minimizes the likelihood of analysts spending time investigating benign activities or false positives. Both Suspicions and Malops are presented in Splunk along with insights that give context to the alerts so you can quickly understand what is happening in your environment.

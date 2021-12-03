@@ -1,0 +1,59 @@
+<!--
+/*
+App_Config.xml
+ '''
+ Written by Aplura, LLC
+ Copyright (C) 2017-2020 Aplura, ,LLC
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ '''
+ */
+-->
+<dashboard version="1.1"
+           script="application_configuration_webpack.js, asa_init.js"
+           stylesheet="app_configuration.css">
+    <label>Application Configuration</label>
+    <row>
+        <panel>
+            <html>
+                <div class="documentation_box">
+                    <dl>
+                        <dt>Application Configuration</dt>
+                        <dd>This tab contains the "Save" button to show that the App was configured. It may also contain
+                            information and configurations relating to the data.
+                        </dd>
+                    </dl>
+                </div>
+            </html>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <html>
+                <div id="button_container" class="button_container"></div>
+            </html>
+        </panel>
+    </row>
+    <row id="row_tabs">
+        <panel>
+            <html>
+                <ul id="tabs" class="nav nav-tabs"></ul>
+                <div class="message_box" id="msg_box" name="msg_box"></div>
+                <div class="slide_pills"></div>
+                <div id="tab_content_container" class="tab_content_container"></div>
+            </html>
+        </panel>
+    </row>
+</dashboard>

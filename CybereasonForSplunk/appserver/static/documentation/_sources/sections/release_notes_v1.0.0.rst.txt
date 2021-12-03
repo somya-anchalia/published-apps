@@ -1,0 +1,45 @@
+Version 1.0.0
+-------------
+
+- Test and QA
+
+    - [CYB-27] - Failed Test - Evengent Docs
+
+- Bug
+
+    - [CYB-13] - Remove Proxy Configs for Mod Inputs
+    - [CYB-24] - Modular Input throwing 400 errors
+    - [CYB-32] - More UI Changes
+    - [CYB-34] - Counting of Fields
+    - [CYB-35] - Enable Proxy configurations
+    - [CYB-36] - Self Signed Certificate throws error on request
+    - [CYB-37] - API Inconsistent - Throws exception on string "boolean"
+
+
+- New Feature
+
+    - [CYB-6] - Modular Input
+    - [CYB-7] - Field Extractions and CIM Compliance
+    - [CYB-8] - Discovery Dashboard
+    - [CYB-9] - Inbox Dashboard
+    - [CYB-10] - Malop Breakdown Dashboard
+    - [CYB-11] - Malware Dashboard
+    - [CYB-12] - Suspicions Dashboard
+    - [CYB-14] - Malops Breakdown - Additional detail
+    - [CYB-15] - App Icons
+    - [CYB-17] - Health Dashboard
+    - [CYB-26] - Create Eventgen
+
+
+
+- Improvement
+
+    - [CYB-16] - Discovery Dashboard Modifications
+    - [CYB-18] - Inbox Dashboard Cell Drilldown
+    - [CYB-20] - Add Host Dropdown - All Dashboards
+    - [CYB-22] - Remove Menu Slider
+    - [CYB-23] - Discovery Board
+    - [CYB-25] - Suspicions Inbox Update searches
+    - [CYB-28] - Slight Updates
+    - [CYB-29] - CSS Changes
+    - [CYB-30] - Updates to Interface

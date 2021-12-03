@@ -1,0 +1,8 @@
+.. |long_name| replace:: _LONG_NAME_
+.. |version| replace:: _VERSION_
+.. |build| replace:: _BUILD_
+.. |splunk_versions| replace:: 8.0, 7.3
+.. |splunkbase_url| replace:: https://splunkbase.splunk.com
+.. |ta_name| replace:: _TA_NAME_
+.. |ia_name| replace:: _IA_NAME_
+.. |long_description| replace:: _LONG_DESC_

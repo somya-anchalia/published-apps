@@ -1,0 +1,119 @@
+<form version="1.1">
+  <label>Application Health Overview</label>
+  <fieldset>
+    <input type="time" token="time_restriction">
+      <label>Time Restriction</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <chart>
+        <title>Average kbps Per Endpoint Type</title>
+        <search>
+          <query>index=_internal series=cybereason:* NOT series=cybereason:*test | timechart avg(kbps) span=10m by series</query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.text">Time</option>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.text">kbps</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">area</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">connect</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.seriesColors">[0x123859,0x255D7F,0x459AC4,0x5FC6F8,0xC5DFD1,0x9CD0D1,0x77ABAC]</option>
+        <option name="height">270</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Last checkpoint</title>
+        <search>
+          <query>eventtype=cybereason_api | stats latest(last_checkpoint) as lchk latest(events_returned) as
+            events_returned by object | convert ctime(lchk) | fields lchk object events_returned | rename lchk as
+            "Checkpoint Time" object as "API Endpoint" events_returned AS "Total Events Returned During Run"
+          </query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <title>Last 10 event retrieval results</title>
+      <input type="dropdown" token="data_input_name" searchWhenChanged="true">
+        <label>Host Input</label>
+        <default>*</default>
+        <choice value="*">All</choice>
+        <search>
+          <query>|rest /services/data/inputs/cybereason | stats count by title | eval title_long =
+            "cybereason://".title
+          </query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <fieldForLabel>title</fieldForLabel>
+        <fieldForValue>title_long</fieldForValue>
+      </input>
+      <table>
+        <search>
+          <query>eventtype=cybereason_api source="$data_input_name$" | table _time last_checkpoint object source |
+            convert ctime(last_checkpoint) | head 10
+          </query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>API Error Count</title>
+        <search>
+          <query>eventtype=cybereason_error | stats count by error_message code section source</query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+      </table>
+    </panel>
+    <panel>
+      <table>
+        <title>Additional Login Errors</title>
+        <search>
+          <query>index=_internal sourcetype=restclient log_level=ERROR action=login | stats count by type url code possible_reason</query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+</form>

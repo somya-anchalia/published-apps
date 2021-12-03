@@ -1,0 +1,16 @@
+This App provides the following scripts:
+
+.. list-table:: Scripts
+   :widths: 10 15
+   :header-rows: 0
+
+   * - cybereason.py
+     - This python file controls the ability to interface with Cybereason.
+   * - cybereason_rest_client.py
+     - This Python class allows re-use of the cybereason api for various applications.
+   * - Diag.py
+     - Allows diag-targeted collection of information.
+   * - ModularInput.py
+     - Inheritable Class to create Modular Inputs
+   * - Utilities.py
+     - Allows utility interactions with Splunk Endpoints

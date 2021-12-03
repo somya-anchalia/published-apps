@@ -1,0 +1,206 @@
+<form version="1.1">
+    <label>Malops statistics</label>
+    <fieldset submitButton="false">
+        <input type="time" token="time_restriction">
+            <label>Time restriction</label>
+            <default>
+                <earliest>-30d@d</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+        <input type="dropdown" token="selected_input_name" searchWhenChanged="true">
+            <label>Host input</label>
+            <search>
+                <query>| `cybereason_configured_inputs("base_url")`</query>
+                <earliest>$time_restriction.earliest$</earliest>
+                <latest>$time_restriction.latest$</latest>
+            </search>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>base_url</fieldForLabel>
+            <fieldForValue>base_url</fieldForValue>
+        </input>
+    </fieldset>
+    <row id="tabs">
+        <panel>
+            <html>
+                <style>.results-table tr.expanded-content-row td, .results-table tr.expanded-row td {
+                    background: none !important;
+                    }
+                    .expanded-content-row table tr:nth-child(odd) { background-color: #cccccc !important}
+                    .expanded-content-row table tr:nth-child(even) { background-color: #eeeeee !important}
+                </style>
+                <ul id="tabs" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="row_malop_1,row_malop_2">Machines
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="row_malop_3,row_malop_4">Users
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="toggle-tab" data-toggle="tab" data-elements="row_malop_5">Files
+                        </a>
+                    </li>
+                </ul>
+            </html>
+        </panel>
+    </row>
+    <row id="row_malop_1">
+        <panel>
+            <chart>
+                <title>Affected machines over time</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_malops_affected_machines | timechart dc(guid) as individual_machines
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.text">Time</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.text">Number of Affected Machines</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">0</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">area</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">connect</option>
+                <option name="charting.chart.showDataLabels">none</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="height">150</option>
+                <option name="trellis.enabled">0</option>
+                <option name="trellis.scales.shared">1</option>
+                <option name="trellis.size">medium</option>
+            </chart>
+        </panel>
+    </row>
+    <row id="row_malop_2">
+        <panel>
+            <html>
+                <div id="table_row_expansion_0_settings" style="display:none;"
+                     data-detail_search="`cybereason_malops_base_name(&quot;$selected_input_name$&quot;, &quot;%key%&quot;)` | sort - _time"
+                     data-detail_field="Name">
+                </div>
+            </html>
+            <table id="table_row_expansion_0">
+                <title>Affected machines</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_malops_affected_machines | eval n = lower(name) | stats dc(malop_guid) as count by n | sort - count | rename n as Name count as Count
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="drilldown">none</option>
+            </table>
+        </panel>
+    </row>
+    <row id="row_malop_3">
+        <panel>
+            <chart>
+                <title>Affected users over time</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_malops_affected_users | timechart count
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.text">Time</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.text">Number of Affected Users</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">0</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">area</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">connect</option>
+                <option name="charting.chart.showDataLabels">none</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">stacked</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="height">150</option>
+                <option name="trellis.enabled">0</option>
+                <option name="trellis.scales.shared">1</option>
+                <option name="trellis.size">medium</option>
+            </chart>
+        </panel>
+    </row>
+    <row id="row_malop_4">
+        <panel>
+            <html>
+                <div id="table_row_expansion_1_settings" style="display:none;"
+                     data-detail_search="|makeresults | eval tmp_name = replace(&quot;%key%&quot;, &quot;\\\\&quot;,&quot;*&quot;), h = &quot;$selected_input_name$&quot;| map search=&quot;search `cybereason_malops_base_user(&quot;$h$&quot;,&quot;$tmp_name$&quot;)`&quot;|sort - _time"
+                     data-hide-fields="Name" data-detail_field="Name">
+                </div>
+
+            </html>
+            <table id="table_row_expansion_1">
+                <title>Affected users</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype="cybereason_malops_affected_users"
+                        | stats count by name | sort - count | rename name AS Name count as Count
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="drilldown">none</option>
+            </table>
+        </panel>
+    </row>
+    <row id="row_malop_5">
+        <panel>
+            <table>
+                <title>Suspicious file breakdown</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_malops_suspects
+                        | stats dc(malop_guid) as count by name
+                        | sort - count | rename name AS Name count as "Distinct Malops"
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="drilldown">none</option>
+            </table>
+        </panel>
+        <panel>
+            <table>
+                <title>Files to remediate</title>
+                <search>
+                    <query>host="$selected_input_name$" eventtype=cybereason_malops_files_to_remediate
+                        | stats dc(malop_guid) as count by name
+                        | sort - count| rename name AS Name count as "Distinct Malops"
+                    </query>
+                    <earliest>$time_restriction.earliest$</earliest>
+                    <latest>$time_restriction.latest$</latest>
+                </search>
+                <option name="drilldown">none</option>
+            </table>
+        </panel>
+    </row>
+</form>

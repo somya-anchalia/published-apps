@@ -1,0 +1,82 @@
+<form version="1.1">
+  <label>User Action Logs</label>
+  <fieldset submitButton="false">
+    <input type="time" token="time_restriction">
+      <label>Time restriction</label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="selected_input_name" searchWhenChanged="true">
+        <label>Host input</label>
+        <search>
+            <query>| `cybereason_configured_inputs("base_url")`</query>
+            <earliest>$time_restriction.earliest$</earliest>
+            <latest>$time_restriction.latest$</latest>
+        </search>
+        <default>*</default>
+        <choice value="*">All</choice>
+        <fieldForLabel>base_url</fieldForLabel>
+        <fieldForValue>base_url</fieldForValue>
+    </input>
+    <input type="dropdown" token="action_log_type">
+        <label>Action Log Type</label>
+        <default>*</default>
+        <choice value="*">All</choice>
+        <choice value="General/Login">General/Login</choice>
+        <choice value="General/Logout">General/Logout</choice>
+        <choice value="General/NotificationSettingChange">General/NotificationSettingChange</choice>
+        <choice value="Investigation/Query">Investigation/Query</choice>
+        <choice value="Malop Investigation/CustomReputationsDetails">Malop Investigation/CustomReputationsDetails</choice>
+        <choice value="Malop Investigation/ManualCustomReputations">Malop Investigation/ManualCustomReputations</choice>
+        <choice value="Malop Investigation/Remediation">Malop Investigation/Remediation</choice>
+        <choice value="Malop Investigation/MalopInboxAccess">Malop Investigation/MalopInboxAccess</choice>
+        <choice value="Malop Investigation/MachineIsolationDetails">Malop Investigation/MachineIsolationDetails</choice>
+        <choice value="Malop Investigation/MachineIsolation">Malop Investigation/MachineIsolation</choice>
+        <choice value="Malop Investigation/RemediationDetails">Malop Investigation/RemediationDetails</choice>
+        <choice value="Malop Investigation/ChangeMalopState">Malop Investigation/ChangeMalopState</choice>
+        <choice value="Malop Investigation/GetFileDetails">Malop Investigation/GetFileDetails</choice>
+        <choice value="Malop Investigation/GetFile">Malop Investigation/GetFile</choice>
+        <choice value="Malop Investigation/MalopComment">Malop Investigation/MalopComment</choice>
+        <choice value="Remote Shell/Connect">Remote Shell/Connect</choice>
+        <choice value="Sensor Management/ManualArchiveInvoked">Sensor Management/ManualArchiveInvoked</choice>
+        <choice value="Sensor Management/SensorArchivedDetails">Sensor Management/SensorArchivedDetails</choice>
+    </input>
+    <input type="text" token="search_log" searchWhenChanged="true">
+      <label>Search</label>
+      <default></default>
+      <initialValue>.*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <title>Details</title>
+        <search>
+          <query>
+            `cybereason_user_action_logs` | dedup uuid
+            | search $search_log$ DeviceName=$action_log_type$ host="$selected_input_name$"
+            | eval "action_time"=strptime(userActionTime,"%b %d %Y, %H:%M:%S UTC")
+            | eval "Action Time"=strftime(action_time,"%Y-%m-%d %H:%M:%S")
+            | eval "Created"=strftime(_time,"%Y-%m-%d %H:%M:%S")
+            | fields username userRole loginMethod machineName machineIP DeviceName "Action Time" actionSuccess QueryDetails "Created"
+            | sort "action_time"
+            | rename username AS "Username", userRole as "User Role", loginMethod as "Login Method", machineName as "Machine Name", 
+            machineIP as "Machine IP", DeviceName as "Action Log Type", actionSuccess as "Action Success", QueryDetails as "Query Details"
+            | fields - _*
+          </query>
+          <earliest>$time_restriction.earliest$</earliest>
+          <latest>$time_restriction.latest$</latest>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="rowNumbers">false</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">false</option>
+      </table>
+    </panel>
+  </row>
+</form>

@@ -1,0 +1,213 @@
+/*
+ app_configuration.css
+ '''
+ Written by Aplura, LLC
+ Copyright (C) 2016-2020 Aplura, ,LLC
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ '''
+ */
+
+.modal {
+    display: none;
+}
+
+/* position: fixed was causing misalignment with Splunk dashboard version 1.1 */
+/* .modal .msg_box {
+    position: fixed;
+} */
+
+.existing_container {
+    display: inline-block;
+    width: 95%;
+}
+
+.tab_content {
+    padding: .5em;
+    overflow: scroll;
+}
+
+.tab_content_container .control-label {
+    display: inline-block;
+}
+
+.tab_content_container .controls {
+    float: right;
+    margin-right: 5px;
+}
+
+.button_container .btn {
+    margin-left: 10px;
+}
+
+.item_container {
+    width: 300px;
+    border: groove 2px #cccccc;
+    height: initial;
+    padding: 2px;
+    overflow: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.tab_content .tab_content_container {
+    width: 100%;
+    margin-left: -2px;
+}
+
+.tab_content .item_container {
+    border: 2px #ddd solid;
+    background: #fff;
+    padding: 10px;
+    margin: 14px;
+}
+
+.tab_content .existing_container
+
+.tab_content .alert {
+    background: white;
+    float: left;
+}
+
+.tab_content .message_container {
+    height: 50px;
+    display: block;
+    overflow: hidden;
+    width: 99%
+}
+
+.tab_content ._message_container .controls {
+    float: none;
+    width: 100%;
+    text-align: center;
+}
+
+.tab_content .message_container .alert .icon-alert {
+    padding-right: 10px;
+    position: relative;
+}
+
+.tab_content .tab_content_height {
+    width: 100%;
+    height: 500px;
+}
+/* old settings */
+.existing_credential_container, .existing_proxy_container {
+    display: inline-block;
+    width: 95%;
+    border: 1px solid black;
+}
+
+.conversion_container {
+    display: inline-block;
+    border: 1px black solid;
+    padding: 5px;
+    margin: 10px;
+    height: auto;
+    width: 75%;
+}
+
+.conversion_container span {
+    font-weight: bold;
+}
+
+.clickable_cred.delete, .clickable_proxy.delete {
+    height: 30px
+}
+
+.slide_pills {
+    display: inline-block;
+}
+
+.modal {
+    display: none;
+}
+
+.encrypted_credentials, .proxy_credentials, .mod_input_credentials, .app_config {
+    background-color: rgb(238, 238, 238);
+    padding: .5em;
+    overflow: scroll;
+}
+
+.encrypted_credentials .control-label, .proxy_credentials .control-label, .mod_input_credentials .control-label, .app_config .control-label {
+    display: inline-block;
+}
+
+.encrypted_credentials .controls, .proxy_credentials .controls, .mod_input_credentials .controls, .app_config .controls {
+    float: right;
+    margin-right: 5px;
+}
+
+.encrypted_credentials .control-group, .proxy_credentials .control-group, .mod_input_credentials .control-group, .app_config .control-group {
+    width: 250px;
+    border: groove 2px #cccccc;
+    height: initial;
+    padding: 2px;
+    overflow: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.encrypted_credentials .clickable_cred, .proxy_credentials .clickable_proxy, .mod_input_credentials .clickable_mod_input {
+    cursor: pointer;
+}
+
+.app_config .app_config_container, .encrypted_credentials .encrypted_credentials_container, .proxy_credentials .proxy_credentials_container, .mod_input_credentials .mod_input_credentials_container {
+    width: 100%;
+    margin-left: -2px;
+}
+
+.encrypted_credentials .credential_container, .proxy_credentials .proxy_container, .mod_input_credentials .mod_input_container {
+    border: 2px #ddd solid;
+    background: #fff;
+    padding: 10px;
+    margin: 14px;
+}
+
+.encrypted_credentials .existing_container, .proxy_credentials .existing_container, .mod_input_credentials .existing_container {
+    float: none;
+}
+
+.encryted_credentials .alert {
+    background: white;
+    float: left;
+}
+
+.encrypted_credentials .encrypted_credentials_message_container, .proxy_credentials .proxy_message_container, .mod_input_credentials .mod_input_message_container {
+    height: 50px;
+    display: block;
+    overflow: hidden;
+    width: 99%
+}
+
+.encrypted_credentials .encrypted_credentials_message_container .controls, .proxy_credentials .proxy_message_container .controls, .mod_input_credentials .mod_input_message_container .controls {
+    float: none;
+    width: 100%;
+    text-align: center;
+}
+
+.encrypted_credentials .encrypted_credentials_message_container .alert .icon-alert, .proxy_credentials .proxy_message_container .alert .icon-alert, .mod_input_credentials .mod_input_message_container .alert .icon-alert {
+    padding-right: 10px;
+    position: relative;
+}
+
+.encrypted_credentials .encrypted_credentials_height, .proxy_credentials .proxy_height, .mod_input_credentials .mod_input_height {
+    width: 100%;
+    height: 500px;
+}

@@ -1,0 +1,65 @@
+key,label,category
+OPEN,Under investigation,malop_status
+UNREAD,Unread,malop_status
+REOPENED,Reopened,malop_status
+REOPEN,Reopened,malop_status
+TOREVIEW,To review,malop_status
+TODO,To review,malop_status
+FP,Not relevant,malop_status
+CLOSED,Remediated,malop_status
+CNC_COMMUNICATION,C&C,malop_element_name
+LATERAL_MOVEMENT,Lateral movement,malop_element_name
+MALICIOUS_INFECTION,Infection,malop_element_name
+PRIVILEGE_ESCALATION,Privilege escalation,malop_element_name
+RANSOMWARE,Ransomware,malop_element_name
+DATA_THEFT,Data theft,malop_element_name
+SCANNING,Scanning,malop_element_name
+credentialTheftMalop,Attempted credential theft,decision_feature
+filelessMalware,File-less malware,decision_feature
+maliciousByCodeInjection,Malicious by code injection,decision_feature
+maliciousByDgaDetection,Malicious by DGA Detection,decision_feature
+maliciousByRansomwareModule,Malicious fake module,decision_feature
+maliciousExecutionOfPowerShell,Malicious by Powershell,decision_feature
+maliciousExecutionOfShellProcess,Malicious by shell process,decision_feature
+maliciousUseOfPsexec,Malicious by PSexec,decision_feature
+ransomwareByHashReputation,Ransomware behavior,decision_feature
+connectionToMaliciousDomainByDomainRootCause,Connection to malicious domain,decision_feature
+credentialTheftMalop,Attempted credential theft,decision_feature
+maliciousByCodeInjection,Malicious by code injection,decision_feature
+maliciousByDgaDetection,Malicious use of a domain generating algorithm,decision_feature
+maliciousByRansomwareModule,Ransomware behavior,decision_feature
+maliciousExecutionOfShellProcess,Malicious execution of shell process,decision_feature
+maliciousShadowCopyDeletion,Ransomware behavior,decision_feature
+maliciousUseOfPsexec,Malicious remote execution,decision_feature
+ransomwareByHashReputation,Known ransomware by hash,decision_feature
+abusingWindowsAccessibilityFeatures,Abuse of Windows accessibility features,decision_feature
+jscriptRATMalop,JavaScript RAT malop,decision_feature
+CustomRuleMalopDecisionFeature,Custom Rule - Malop,decision_feature
+maliciousByDualExtensionByFileRootCause,Malicious by obscured extension,decision_feature
+maliciousByScanningOfInjectedProcess,Malicious scanning of injected process,decision_feature
+maliciousPrivilegeEscalation,Malicious privilege escalation,decision_feature
+maliciousToolByHashReputation,Malicious tool by hash reputation,decision_feature
+maliciousUseOfOSProcess,Malicious use of OS process,decision_feature
+maliciousWebShellExecution,Malicious web shell execution,decision_feature
+malwareByHashReputation,Known malware by hash,decision_feature
+maliciousByMalwareModule,Malicious malware module,decision_feature
+blackListedFileHash,Blacklisted File Hash,decision_feature
+connectionToBlackListAddressByAddressRootCause,Connection to Blacklisted Address,decision_feature
+connectionToBlackListDomainByDomainRootCause,Connection to Blacklisted Domain,decision_feature
+maliciousByBlackListModule,Malicious Blacklisted Module,decision_feature
+passTheHashMalop,Pass the Hash Malop,decision_feature
+CNC,Command and Control,detection_type
+CREDENTIAL_THEFT,Credential Theft,detection_type
+ELEVATED_ACCESS,Elevated access,detection_type
+EXTENSION_MANIPULATION,Extension manipulation,detection_type
+KNOWN_MALWARE,Known malware,detection_type
+MALICIOUS_PROCESS,Malicious process,detection_type
+PERSISTENCE,Persistence,detection_type
+PHISHING,Phising,detection_type
+PROCESS_INJECTION,Process injection,detection_type
+RECONNAISSANCE,,detection_type
+KnownMalware,Known Malware,malware_type
+FilelessMalware,Fileless Malware,malware_type
+ApplicationControlMalware,Application Control Malware,malware_type
+RansomwareMalware,Ransomware Malware,malware_type
+UnknownMalware,Unknown Malware,malware_type
