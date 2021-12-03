@@ -1,0 +1,183 @@
+body {
+	height: 100%;
+    overflow-x: hidden;
+    position: initial!important;
+    top: initial!important;
+    margin: 0;
+    padding: 0;
+    background-color: #e9eef0;
+}
+.mainContant {
+	padding-top:5px;
+}
+.InnerContent {
+	padding: 0 30px 30px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+}
+
+.gadgetContent {
+	background: #fff;
+    color: #232f33;
+    box-shadow: 0 2px 6px 0 rgba(26,26,26,.2);
+    border-radius: 6px;
+    padding: 15px;
+    font-family: Muli,sans-serif;
+    font-size: 14px;
+    height: 375px;
+}
+.title {
+	text-align: left;
+    color: #577580;
+    font-size: 20px;
+    font-weight: 700;
+    /* font-family: Comfortaa; */
+    line-height: 26px;
+}
+.gadget2_content {
+	padding-top: 24px;
+}
+.alert {
+	margin-top: 40px;
+}
+.table-data {
+	margin-left: 30px;
+}
+.number {
+	font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
+    margin: 0 0 0 5px;
+    text-align: right;
+	color: #577580;
+}
+.caption {
+	margin-top: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: right;
+	margin-bottom: 0;
+	color: #232f33;
+}
+.title-wrap { margin-bottom: 14px; }
+.zing-dashboard-link {
+	cursor: pointer;
+    border-bottom: 1px solid transparent!important;
+    text-decoration: none;
+}
+a {
+	background-color: transparent;
+}
+a:hover { 
+  text-decoration: underline;
+  color:#00aeff;
+  
+}
+.container {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.container .pill.new-data {
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px;
+    margin: 0;
+    padding: 0 20px;
+    background-color: #fff2eb;
+    color: #b35317;
+}
+.container .pill.new-data a {
+    color: #b35317;
+}
+.container .pill.resolved-data {
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px;
+    margin: 0;
+    padding: 0 20px;
+    background-color: #e8f8ff;
+    color: #006999;
+}
+.container .pill.resolved-data a {
+    color: #006999;
+}
+
+.gadget2_content .table-data .table-wrapper {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+.gadget2_content .table-data table {
+    width: 100%;
+	text-align: left;
+    table-layout: fixed;
+    overflow: auto;
+	border-collapse: collapse;
+}
+
+.gadget2_content .table-data table tr {
+    line-height: 30px;
+    white-space: nowrap;
+}
+
+.gadget2_content .table-data table td:first-child {
+    width: 14px;
+    padding-right: 20px;
+}
+
+.gadget2_content .table-data table .dot {
+    height: 9px;
+    width: 9px;
+    background-color: #404040;
+    border-radius: 50%;
+    display: inline-block;
+}
+.gadget2_content .table-data table .dot.high {
+    background-color: #db2121;
+}
+
+.gadget2_content .table-data table .dot.High {
+    background-color: #db2121;
+}
+
+.gadget2_content .table-data table td.clipped {
+    width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.gadget2_content .table-data table td:last-child {
+    text-align: right;
+}
+
+.first-td {
+    width: 10px !important;
+}
+
+.zing-dashboard-link {
+    cursor: pointer;
+    border-bottom: 1px solid transparent!important;
+    text-decoration: none;
+}
+
+.zing-dashboard-link:hover *{cursor:pointer;color:#00aeff!important}
+
+.zing-dashboard-link.active *{color:#008bcc!important}
+
+.hover-bg:hover{background-color:#ebf0f2}
+
+.hover-content:hover{cursor:pointer}
+
+.gadget3_content {
+	
+}
+
+.right-float {
+    float: right;
+}

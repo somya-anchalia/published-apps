@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Cybereason - Malop Status Update</title>
+<link rel="icon" type="image/png" href=""/>
+<link rel="stylesheet" href="static/styles/bootstrap4.4.1.min.css">
+<link rel="stylesheet" href="static/styles/admin_screen.css">
+<script src="static/scripts/jquery-3.5.1.min.js"></script>
+<script src="static/scripts/bootstrap.min.js"></script>
+<style>
+.form-row {
+	margin-right: 0px;
+    margin-left: 0px;
+	align-items: center;
+    text-align: center;
+}
+h3 {
+	text-align: center;
+}
+</style>
+<script>window.QRADAR_APP_URL = "{{qradar_app_url}}"</script><script>window.CSRF_TOKEN = "{{csrf_token()}}"</script><script>window.QRADAR_APP_URL_PATH = "{{qradar_app_url_path}}"</script></head>
+<body onload="document.getElementById('selectStatus').value = document.getElementById('malop_status').value;">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #414142;">
+	<div class="container" style="margin-left:0;">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">
+				<img height="60px" src="static/images/Cybereason.png" alt="CSQRadar" title="CS-QRadar">
+			</a>
+		</div>
+	</div>
+</nav>
+<div>
+{% for val in messages %}
+	{% if val == "Cybereason Malop status updated successfully." %}
+	<div class="alert alert-info alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		{{ val }}
+	</div>
+	{% else %}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		{{ val }}
+	</div>
+	{% endif %}
+{% endfor %}
+</div>
+<form method="post">
+	</br>
+	<h3 id="section_instance_config">Cybereason Malop Status Update</h3>
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+	<div class="form-row">
+		<div class="form-group  col-md-3"></div>
+		<div class="form-group  col-md-3" align="center">
+			<select name="selectStatus" class="form-control" style="width: 300px;" onclick="return false;" onchange="document.getElementById('malop_status').value = this.value;" id="selectStatus">
+				<option value="UNREAD">Unread</option>
+				<option value="TODO">To Review</option>
+				<option value="OPEN">Under Investigation</option>
+				<option value="CLOSED">Remediated</option>
+				<option value="FP">Not Relevant</option>
+			</select>
+		</div>
+		<div class="form-group  col-md-3">
+			<input type="hidden" name="malop_status" id="malop_status" value="{{ form.malop_status }}">
+			<input type="hidden" name="malop_id" id="malop_id" value="{{ form.malop_id }}">
+			<input type="submit" id="btn_save" class="btn btn-primary" onclick="return true;" value="Update Malop Status">
+		</div>
+		<div class="form-group  col-md-3"></div>
+	</div>
+	<script>
+		var csrf_token = "{{ csrf_token() }}";
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!/^(GET|POST|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+					alert(settings.type);
+					xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				}
+			}
+		});
+	</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+	"_id": "IBMQRadar: Cybereason",
+	"doc": {
+		"extension_manifest": {
+			"locale": {
+				"en-US": {
+					"extension.name": "Cybereason Endpoint Protection Platform - QRadar v7.3.3FP6+/7.4.1FP2+",
+					"extension.long.description": "The Cybereason app enables users to leverage the power of the Cybereason Protection Platform within QRadar, providing them with advanced detection and enriched context around malicious operations in a single pane of glass. When Cybereason generates a Malop or malware alert, a high-fidelity incident is automatically displayed in QRadar. The QRadar incident contains a triaged analysis of the security event, identifying the compromised machines and affected hosts. Analysts can then manage the incident workflow from QRadar as well as seamlessly pivot to the Cybereason platform for further investigation. The Cybereason app also includes a security dashboard, providing a high-level overview of the organizational security posture from within the QRadar app."
+				}
+			},
+			"extension_name": "extension.name",
+			"extension_long_description": "extension.long.description",
+			"supported_language_set": [
+				"en-US"
+			],
+			"min_qradar_version": "2019.14.6.20201205215722",
+			"version": "3.0.1",
+			"authored_by": "Cybereason Customer Support",
+			"authored_by_email": "support@cybereason.com",
+			"package_size": "6124079"
+		}
+	}
+}

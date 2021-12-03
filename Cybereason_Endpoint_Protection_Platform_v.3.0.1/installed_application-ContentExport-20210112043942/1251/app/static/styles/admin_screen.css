@@ -1,0 +1,70 @@
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+	font-family: Muli;
+	src: url('../fonts/muli/Muli.ttf'); 
+}
+
+@font-face {
+	font-family: Muli-SemiBold;
+	src: url('../fonts/muli/Muli-SemiBold.ttf'); 
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+
+body {
+    font-family: Muli;
+}
+
+#myTabContent {
+	border-bottom: lightgray 1px solid;
+	border-left: lightgray 1px solid;
+	border-right: lightgray 1px solid;
+	border-radius: 0 0 5px 5px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+input.error {
+	border-color: #f00 !important;
+}
+
+small.required {
+	color:#f00;
+}
+
+#btn_save {
+	background-color: #2F8BAA;
+	border-color: #2F8BAA;
+}
+
+#btn_save hover {
+	background-color: #2F8BAA;
+	border-color: #2F8BAA;
+}
+
+#btn_reset {
+	background-color: #2F8BAA;
+	border-color: #2F8BAA;
+}
+
+#btn_reset hover {
+	background-color: #2F8BAA;
+	border-color: #2F8BAA;
+}
+
+.h2 {
+	font-family: AvantGarde-Regular;
+	line-height: 0;
+}
+
+.nav-link {
+	font-weight: bold;
+}
+
+select.error {
+	border-color: #f00 !important;
+}

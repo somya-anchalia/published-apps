@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Events List</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href=""/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="static/styles/util.css">
+<link rel="stylesheet" type="text/css" href="static/styles/main.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="static/styles/bootstrap4.4.1.min.css">
+<link rel="stylesheet" type="text/css" href="static/styles/dataTables.bootstrap4.min.css">
+<!--===============================================================================================-->
+<script src="static/scripts/jquery-3.5.1.min.js"></script>
+<script src="static/scripts/jquery.dataTables.min.js"></script>
+<script src="static/scripts/dataTables.bootstrap4.min.js"></script>
+<script src="static/scripts/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+
+<style type="text/css">
+
+	.paging-nav {
+	  text-align: right;
+	  padding-top: 2px;
+	}
+	
+	.paging-nav a {
+	  margin: auto 1px;
+	  text-decoration: none;
+	  display: inline-block;
+	  padding: 1px 7px;
+	  background: #91b9e6;
+	  color: white;
+	  border-radius: 3px;
+	}
+	
+	.paging-nav .selected-page {
+	  background: #187ed5;
+	  font-weight: bold;
+	}
+	
+	.paging-nav,
+	#tableData {
+	  /*width: 400px;*/
+	  margin: 0 auto;
+	  font-family: Muli;
+	}
+
+	#myTabContent {
+    border-bottom: lightgray 1px solid;
+    border-left: lightgray 1px solid;
+    border-right: lightgray 1px solid;
+    border-radius: 0 0 5px 5px;
+}
+	#devices {
+		padding: 13px 40px;
+	}
+
+	.table {
+		font-size: 14px;
+	}
+
+	pre {
+		white-space: pre-wrap; 
+		word-break: break-word;
+		font-size: 100%;
+		font-family: Muli;
+	}
+</style>
+<script>window.QRADAR_APP_URL = "{{qradar_app_url}}"</script><script>window.CSRF_TOKEN = "{{csrf_token()}}"</script><script>window.QRADAR_APP_URL_PATH = "{{qradar_app_url_path}}"</script></head>
+<body>
+	<nav class="navbar" style="background-color: #414142;">
+		<div class="container" style="margin-left:0;">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<img height="60px" src="static/images/Cybereason.png" alt="CSQRadar" title="CS-QRadar">
+				</a>
+			</div>
+		</div>
+	</nav>
+	{% if form.filterText|length > 0 %}
+	<div style="padding:5px 5px 5px 50px;">
+		<span style="padding-right: 10px;font-size: 18px;">Filters:</span>
+		{% for txt in form.filterText %}
+		<span class="badge" style="background-color: #5bc0de; color: white;font-size: smaller;font-weight: normal;">{{ txt }}</span>
+		{% endfor %}
+	</div>
+	{% endif %}
+	<div style="margin: 10px;font-family: Muli;">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="machine-tab" data-toggle="tab" href="#machines" role="tab" aria-controls="machines" aria-selected="true">Affected Machines</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Affected Users</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="machines" role="tabpanel" aria-labelledby="machine-tab">
+				<table id="machinelist" class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>Machine Name</th>
+							<th>OS Version</th>
+							<th>Is Isolated</th>
+							<th>IS Connected</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for machine in form.machine_data %}
+						<tr>
+                            {% if machine.is_new %}
+                                <td>{{machine.machine_name}}&nbsp;&nbsp;&nbsp;<span class="badge bg-success" style="color: white">New</span></td>
+                            {% else %}
+                                <td>{{machine.machine_name}}</td>
+                            {% endif %}
+							<td>{{machine.os_version}}</td>
+							<td>{{machine.is_isolated}}</td>
+							<td>{{machine.is_connected}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+			<div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+				<div class="container" style="padding: 10px;max-width: 100%;">
+					<table id="userlist" class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>User Name</th>
+								<th>Privileges</th>
+								<th>Password Age (In Days)</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for user in form.user_data %}
+							<tr>
+								<td>{{user.user_name}}</td>
+								<td>{{user.privileges}}</td>
+								<td>{{user.passwordAgeDays}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#eventlist').DataTable();
+			$('#devicelist').DataTable();
+		});
+	</script>
+	<script>
+		var csrf_token = "{{ csrf_token() }}";
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!/^(GET|POST|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+					alert(settings.type);
+					xhr.setRequestHeader("X-CSRFToken", csrf_token);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
